@@ -1,0 +1,41 @@
+.header {
+  background: $bg-light;
+}
+.navbar {
+  margin: 0 auto;
+  max-width: 910px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.navbar__logo {
+}
+
+.navbar__list {
+  flex: 1;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar__list__item {
+  flex: 1 0 80px;
+  display: inline;
+  text-align: center;
+  margin: 0.3rem;
+  a {
+    color: $text1;
+    text-decoration: none;
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (max-width: $break-sm) {
+  .navbar {
+    background: blue;
+  }
+}

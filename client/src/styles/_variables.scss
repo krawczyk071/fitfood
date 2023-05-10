@@ -1,0 +1,49 @@
+$bg-light: #fafafa;
+$bg-dark: #023430;
+$bg-secondary: #00684a;
+$text1: #1e293b;
+$text2: #f1fff9;
+$primary: #00ed64;
+$secondary: #aa090e;
+$accent: #fbbf24;
+
+$success: green;
+$info: blue;
+$warning: orange;
+$danger: red;
+
+$radius1: 0.375rem;
+$border1: 1px solid $secondary;
+$gradient1: linear-gradient(180deg, #061161, #aa090e);
+$gradient2: linear-gradient(700deg, #061161, #aa090e);
+
+$break-sm: 576px;
+$break-md: 768px;
+$break-lg: 992px;
+
+$form-bg: white;
+$form-color2: #777;
+$form-color3: #cf2c2c;
+$form-text1: black;
+$form-text2: rgb(255, 255, 255);
+$form-font-size: 1rem;
+$form-line-height: 1.5;
+
+$form-focus: $form-color3;
+$form-arrow: $form-text1;
+$form-border: 1px solid $form-color2;
+$form-border-radius: $radius1;
+$form-padding: 0.375rem 0.75rem;
+$option-bg: $form-bg;
+
+$shadow-xs: 0 0 0 1px rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
