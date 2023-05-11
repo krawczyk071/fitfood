@@ -1,0 +1,25 @@
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  &__icon {
+    margin-right: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background: $accent;
+    color: $text1;
+    img {
+      width: 60px;
+    }
+  }
+  &__text {
+    color: $primary;
+    font-family: "Catamaran", sans-serif;
+    font-weight: 900;
+    font-size: 4rem;
+  }
+}

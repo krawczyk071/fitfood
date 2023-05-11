@@ -1,10 +1,13 @@
 import React from "react";
+import Logo from "./Logo";
 
 const Navbar = () => {
   return (
     <div className="header">
       <nav className="navbar">
-        <div className="navbar__logo">FitFood</div>
+        <div className="navbar__logo">
+          <Logo />
+        </div>
 
         <ul className="navbar__list">
           <li className="navbar__list__item">
@@ -14,18 +17,23 @@ const Navbar = () => {
           </li>
           <li className="navbar__list__item">
             <Link smooth to="/#about">
-              One
+              AddRecipe
             </Link>
           </li>
 
           <li className="navbar__list__item">
             <Link smooth to="/#projects">
-              Two
+              Discover
             </Link>
           </li>
           <li className="navbar__list__item">
             <Link smooth to="/#contact">
-              Three
+              MyMenu
+            </Link>
+          </li>
+          <li className="navbar__list__item">
+            <Link smooth to="/#contact">
+              MealJournal
             </Link>
           </li>
         </ul>
