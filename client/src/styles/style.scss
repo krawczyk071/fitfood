@@ -4,6 +4,21 @@
 @import "base/font";
 @import "base/form";
 @import "base/utils";
+
+@mixin bgbase {
+  background: white;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: $break-lg;
+  border-radius: $radius1;
+  border: $border2;
+  box-shadow: $shadow-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 @import "components/navbar";
 @import "components/hero";
 @import "components/logo";
@@ -14,3 +29,32 @@
 @import "components/search";
 @import "components/signup";
 @import "components/tracker";
+@import "components/footer";
+@import "components/discover";
+@import "components/chart";
+
+body {
+  font-family: "Muli", sans-serif;
+  color: $text1;
+  background: $gradient2;
+}
+h1 {
+  font-size: 1.3rem;
+  padding-bottom: 0.6rem;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-line: 4px;
+  text-decoration-color: $accent;
+}
+h2 {
+  font-size: 1rem;
+  padding-bottom: 0.4rem;
+  font-weight: bold;
+}
+p {
+  padding-bottom: 0.6rem;
+}
+.lbl {
+  font-weight: bold;
+  align-self: flex-start;
+}

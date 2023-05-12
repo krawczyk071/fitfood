@@ -15,39 +15,47 @@
   color: white;
   cursor: pointer;
   transition: 0.2s;
-}
 
-.btn:hover {
-  background-color: rgba(23, 26, 32, 1);
-  cursor: pointer;
-}
+  &:hover {
+    background-color: rgba(23, 26, 32, 1);
+    cursor: pointer;
+  }
 
-.btn--success {
-  background-color: #04aa6d;
-} /* Green */
-.btn--success:hover {
-  background-color: #46a049;
-}
+  &.btn--success {
+    background-color: $success;
+    &:hover {
+      background-color: $success;
+    }
+  }
 
-.btn--info {
-  background-color: #2196f3;
-} /* Blue */
-.btn--info:hover {
-  background: #0b7dda;
-}
+  &.btn--info {
+    background-color: $info;
+    &:hover {
+      background: $info;
+    }
+  }
 
-.btn--warning {
-  background-color: #ff9800;
-} /* Orange */
-.btn--warning:hover {
-  background: #e68a00;
-}
+  &.btn--warning {
+    background-color: $warning;
+    &:hover {
+      background: $warning;
+    }
+  }
 
-.btn--danger {
-  background-color: #f44336;
-} /* Red */
-.btn--danger:hover {
-  background: #da190b;
+  &.btn--danger {
+    background-color: $danger;
+    &:hover {
+      background: $danger;
+    }
+  }
+
+  &.btn--primary {
+    background-color: $accent;
+    color: $text1;
+    &:hover {
+      background: $accent;
+    }
+  }
 }
 
 .ipt {
@@ -64,14 +72,10 @@
   width: 100%;
   transition: all 0.15s ease-in-out;
 }
-textarea::placeholder {
-  font-family: Arial, sans-serif;
-  font-size: var(--form-font-size);
-  font-weight: 400;
-}
 
 .ipt-forbtn {
   border-radius: $radius1 0 0 $radius1;
+  border-right: none;
 }
 .ipt-btn {
   width: 40px;
@@ -88,6 +92,16 @@ textarea::placeholder {
 .ipt-btn:hover {
   /* border: 1px solid $form-bg); */
   background: $form-bg;
+}
+.ipt-btn--transparent {
+  background: $form-bg;
+  color: $form-text1;
+  border-left: none;
+}
+
+textarea::placeholder {
+  font-family: Arial, sans-serif;
+  font-size: $form-font-size;
 }
 
 select {

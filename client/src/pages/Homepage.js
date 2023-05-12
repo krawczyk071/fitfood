@@ -5,8 +5,8 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import MyMenu from "../components/MyMenu";
 import Recipe from "../components/Recipe";
-import Search from "../components/Search";
 import Tracker from "../components/Tracker";
+import Discover from "../components/Discover";
 
 const Homepage = () => {
   return (
@@ -14,7 +14,7 @@ const Homepage = () => {
       <Hero />
       <Login />
       <Signup />
-      <Search />
+      <Discover />
       <AddRecipe />
       <Recipe />
       <MyMenu />

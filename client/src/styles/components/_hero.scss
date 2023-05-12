@@ -1,5 +1,5 @@
 .hero {
-  background: $secondary;
+  background: $gradient4;
   padding-block: 5rem;
   font-family: "Catamaran", sans-serif;
   font-weight: 900;
@@ -10,6 +10,7 @@
     color: $text1;
     font-size: 2em;
     z-index: 1;
+    text-decoration: none;
   }
   h2 {
     color: $text2;

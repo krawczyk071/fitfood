@@ -36,6 +36,11 @@ const Navbar = () => {
               MealJournal
             </Link>
           </li>
+          <li className="navbar__list__item">
+            <Link smooth to="/#contact">
+              User
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>

@@ -1,6 +1,6 @@
 .logo {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding: 1rem;
   &__icon {
     margin-right: 0.6rem;
@@ -9,9 +9,9 @@
     justify-content: center;
     height: 70px;
     width: 70px;
-    border-radius: 50%;
-    background: $accent;
-    color: $text1;
+    border-radius: $radius1;
+    background: white;
+    color: $primary;
     img {
       width: 60px;
     }

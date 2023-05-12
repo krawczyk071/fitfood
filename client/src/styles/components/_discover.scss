@@ -1,0 +1,6 @@
+.discover {
+  @include bgbase;
+  &__title {
+    align-self: flex-start;
+  }
+}

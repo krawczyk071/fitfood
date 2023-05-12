@@ -1,28 +1,46 @@
 $bg-light: #fafafa;
 $bg-dark: #023430;
-$bg-secondary: #00684a;
+$bg-secondary: #31c51b;
+$bg-highlight1: #eeeded;
 $text1: #1e293b;
 $text2: #f1fff9;
-$primary: #00ed64;
+// $primary: #00ed64;
 $secondary: #00684a;
 $accent: #f79e1b;
+$primary: #71e25a;
 
-$success: green;
+$success: #04c454;
 $info: blue;
 $warning: orange;
 $danger: red;
 
 $radius1: 0.375rem;
+$radius2: 0.5rem;
 $border1: 1px solid $secondary;
-$gradient1: linear-gradient(180deg, #061161, #aa090e);
-$gradient2: linear-gradient(700deg, #061161, #aa090e);
+$border2: 1px solid #e8e8e8;
+$gradient1: radial-gradient(
+  circle at 18.7% 37.8%,
+  rgb(250, 250, 250) 0%,
+  rgb(225, 234, 238) 90%
+);
+$gradient2: linear-gradient(135deg, #e8e8e8, #f3f4f6);
+$gradient3: radial-gradient(
+  circle,
+  rgba(4, 196, 84, 1) 0%,
+  rgba(3, 182, 81, 1) 100%
+);
+$gradient4: linear-gradient(
+  90deg,
+  rgba(49, 197, 27, 1) 0%,
+  rgba(4, 196, 84, 1) 100%
+);
 
 $break-sm: 576px;
 $break-md: 768px;
 $break-lg: 992px;
 
 $form-bg: white;
-$form-color2: #777;
+$form-color2: #e8e8e8;
 $form-color3: #cf2c2c;
 $form-text1: black;
 $form-text2: rgb(255, 255, 255);
