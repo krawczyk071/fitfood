@@ -32,6 +32,11 @@ export const recipes = [
     name: "Eskalopki",
     calories: "1930",
   },
+  {
+    id: 1236,
+    name: "Kalarepa",
+    calories: "330",
+  },
 ];
 
 export const menu = [1231, 1232, 1233, 1234, 1235];

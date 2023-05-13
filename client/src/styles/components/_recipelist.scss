@@ -1,0 +1,28 @@
+.recipelist {
+  width: clamp(200px, 70%, $break-md);
+
+  display: flex;
+  flex-direction: column;
+  &__item {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__btn {
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    a {
+      &,
+      &:hover,
+      &:visited,
+      &:active {
+        text-decoration: none;
+        color: $text1;
+      }
+    }
+  }
+}

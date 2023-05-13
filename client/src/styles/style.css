@@ -488,27 +488,6 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 .mymenu__title {
   align-self: flex-start;
 }
-.mymenu__list {
-  width: clamp(200px, 70%, 768px);
-  display: flex;
-  flex-direction: column;
-}
-.mymenu__list__item {
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.mymenu__list__item__btn {
-  cursor: pointer;
-}
-.mymenu__list__item__btn:hover {
-  transform: scale(1.2);
-}
-.mymenu__list__item a, .mymenu__list__item a:hover, .mymenu__list__item a:visited, .mymenu__list__item a:active {
-  text-decoration: none;
-  color: #1e293b;
-}
 
 .recipe {
   background: white;
@@ -685,6 +664,28 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 .chart__section__cont__data {
   width: 20px;
   background: #f79e1b;
+}
+
+.recipelist {
+  width: clamp(200px, 70%, 768px);
+  display: flex;
+  flex-direction: column;
+}
+.recipelist__item {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recipelist__item__btn {
+  cursor: pointer;
+}
+.recipelist__item__btn:hover {
+  transform: scale(1.2);
+}
+.recipelist__item a, .recipelist__item a:hover, .recipelist__item a:visited, .recipelist__item a:active {
+  text-decoration: none;
+  color: #1e293b;
 }
 
 body {
