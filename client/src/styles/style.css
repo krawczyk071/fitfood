@@ -600,18 +600,45 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 .tracker .select {
   margin: 0.5rem;
 }
-.tracker__recent {
+
+.tracklist {
+  width: 100%;
+}
+.tracklist__recent {
   width: 100%;
   padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
-.tracker__recent__list__item {
+.tracklist__recent__day {
+  width: clamp(300px, 70%, 768px);
+  padding-bottom: 1rem;
+}
+.tracklist__recent__day__list__item {
   padding: 0.2rem;
   display: flex;
   justify-content: space-between;
 }
+.trackmeal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.trackmeal__form {
+  width: clamp(200px, 70%, 768px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.trackmeal__form .ipt,
+.trackmeal__form .btn {
+  margin: 0.5rem;
+}
+
 .footer {
   background: #31c51b;
   color: #f1fff9;
@@ -637,19 +664,25 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 
 .chart {
   display: flex;
-  height: 200px;
+  height: 250px;
   justify-content: center;
   border-radius: 0.5rem;
   overflow: hidden;
 }
-.chart__cont {
+.chart__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chart__section__cont {
+  flex: 1;
   width: 80px;
   background: #eeeded;
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
-.chart__cont__data {
+.chart__section__cont__data {
   width: 20px;
   background: #f79e1b;
 }
