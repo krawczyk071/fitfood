@@ -12,7 +12,9 @@ const TrackMeal = ({ data }) => {
         <div className="select">
           <select name="day" id="day">
             {days.map((d) => (
-              <option value={d}>{d}</option>
+              <option value={d} key={d}>
+                {d}
+              </option>
             ))}
           </select>
         </div>
@@ -22,7 +24,9 @@ const TrackMeal = ({ data }) => {
         <div className="select">
           <select name="meals" id="meals">
             {data.map((m) => (
-              <option value={m.id}>{m.name}</option>
+              <option value={m.id} key={m.id}>
+                {m.name}
+              </option>
             ))}
           </select>
         </div>

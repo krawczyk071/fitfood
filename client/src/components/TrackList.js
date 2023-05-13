@@ -10,7 +10,10 @@ const TrackList = ({ data }) => {
             <h2>{a.date}</h2>
             <ul className="tracklist__recent__day__list">
               {a.meals.map((m) => (
-                <li className="tracklist__recent__day__list__item">
+                <li
+                  className="tracklist__recent__day__list__item"
+                  key={a.date + m.id}
+                >
                   {m.name}
                   <div className="tracklist__recent__day__list__item__btn">
                     <i class="fa-regular fa-trash-can"></i>

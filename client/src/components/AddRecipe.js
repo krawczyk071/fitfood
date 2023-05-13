@@ -46,12 +46,14 @@ const AddRecipe = () => {
         <label htmlFor="ingredients" className="lbl">
           ingredients
         </label>
-        <input
+        <textarea
           className="ipt"
-          type="text"
           name="ingredients"
           id="ingredients"
-        />
+          cols="30"
+          rows="5"
+          placeholder="line1&#10;line2"
+        ></textarea>
         <label htmlFor="directions" className="lbl">
           directions
         </label>
