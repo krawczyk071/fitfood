@@ -7,7 +7,9 @@ export const fetchAllRecipes = createAsyncThunk("fetchAll", async () => {
   return response;
 });
 
-export const addRecipe = createAsyncThunk("addRecipeN", async ({ data }) => {
+export const addRecipe = createAsyncThunk("addRecipeN", async (data) => {
+  // console.log("dt", data);
+
   await createRecipe(data);
 
   return true;
@@ -27,7 +29,7 @@ export const recipesSlice = createSlice({
     },
     [fetchAllRecipes.fulfilled]: (state, action) => {
       if (state.loading === true) {
-        state.data = action.payload;
+        state.data = action.payload.data;
         // console.log("att", action.payload); // null
         state.loading = false;
       }
@@ -38,8 +40,12 @@ export const recipesSlice = createSlice({
         state.error = action.payload;
       }
     },
-    [addRecipe.pending]: (state, action) => {},
-    [addRecipe.fulfilled]: (state, action) => {},
+    [addRecipe.pending]: (state, action) => {
+      console.log("api pending");
+    },
+    [addRecipe.fulfilled]: (state, action) => {
+      console.log("api add");
+    },
     [addRecipe.rejected]: (state, action) => {
       console.log(action.error);
     },
