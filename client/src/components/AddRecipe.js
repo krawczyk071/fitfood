@@ -1,25 +1,68 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addRecipe, getRecipesStatus } from "../redux/features/recipesSlice";
 
-import { addRecipe } from "../redux/features/recipesSlice";
-import Test from "./Test";
+function postProcessForm(formData) {
+  return {
+    ...formData,
+    tags: formData.tags.split(","),
+    ingredients: formData.ingredients.split("\n"),
+    directions: formData.directions.split("\n"),
+  };
+}
+function preProcessForm(formData) {
+  return {
+    ...formData,
+    tags: formData.tags.join(","),
+    ingredients: formData.ingredients.join("\n"),
+    directions: formData.directions.join("\n"),
+  };
+}
 
-const AddRecipe = () => {
-  const [formData, setFormData] = useState({});
+const AddRecipe = ({ edit }) => {
+  // const RecipesStatus = useSelector(getRecipesStatus);
+  const [addStatus, setAddStatus] = useState("idle");
+  const [alerts, setAlerts] = useState("");
+
+  const formInit = {
+    name: "",
+    photo: "",
+    tags: "",
+    time: "",
+    servings: "",
+    calories: "",
+    ingredients: "",
+    directions: "",
+  };
+  const [formData, setFormData] = useState(
+    edit ? preProcessForm(edit) : formInit
+  );
   function onChange(e) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
   const dispatch = useDispatch();
-  function onSubmit(e) {
+
+  async function onSubmit(e) {
     e.preventDefault();
-    console.log("prev");
-    dispatch(addRecipe(formData));
+
+    try {
+      setAddStatus("pending");
+      await dispatch(addRecipe(postProcessForm(formData))).unwrap();
+
+      setFormData(formInit);
+      setAlerts("Recipe added");
+    } catch (err) {
+      console.error("Failed to add recipe", err.message);
+      setAlerts("Failed to add recipe");
+    } finally {
+      setAddStatus("idle");
+    }
   }
 
   return (
     <div className="addrecipe">
       <h1 className="addrecipe__title">Add Recipe</h1>
-      <form onSubmit={onSubmit} className="addrecipe__form">
+      <form onSubmit={onSubmit} className="addrecipe__form" autocomplete="off">
         <label htmlFor="name" className="lbl">
           name
         </label>
@@ -104,7 +147,6 @@ const AddRecipe = () => {
           id="ingredients"
           cols="30"
           rows="5"
-          placeholder="line1&#10;line2"
           value={formData?.ingredients}
           onChange={onChange}
         ></textarea>
@@ -120,21 +162,13 @@ const AddRecipe = () => {
           value={formData?.directions}
           onChange={onChange}
         ></textarea>
-        <button type="submit" className="btn">
+        <button type="submit" className="btn" disabled={addStatus !== "idle"}>
           Submit
         </button>
+        <h2>{alerts}</h2>
       </form>
-      <Test />
     </div>
   );
 };
 
 export default AddRecipe;
-//
-//
-//
-//
-// directions
-//
-//
-//

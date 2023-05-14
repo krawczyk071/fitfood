@@ -1,17 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllRecipes } from "../redux/features/recipesSlice";
+import { fetchRecipes, selectAllRecipes } from "../redux/features/recipesSlice";
+import Recipe from "./Recipe";
+import AddRecipe from "./AddRecipe";
 
 const Test = () => {
-  const recipes = useSelector((state) => state.recipes);
+  const recipes = useSelector(selectAllRecipes);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllRecipes());
+    dispatch(fetchRecipes());
   }, [dispatch]);
 
-  console.log("t", recipes);
-  return <div>TEST</div>;
+  // console.log("t", recipes);
+  return (
+    <>
+      <Recipe recipe={recipes[0]} />
+      <AddRecipe edit={recipes[0]} />
+    </>
+  );
 };
 
 export default Test;

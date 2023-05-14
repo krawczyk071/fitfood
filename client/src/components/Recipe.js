@@ -1,8 +1,11 @@
 import React from "react";
 import { recipes } from "../utils/data";
 
-const Recipe = () => {
-  const recipe = recipes[0];
+const Recipe = ({ recipe }) => {
+  if (!recipe) {
+    recipe = recipes[0];
+  }
+
   return (
     <div className="recipe">
       <div className="recipe__name">
@@ -12,7 +15,7 @@ const Recipe = () => {
         <img src={recipe.photo} alt="recipe" />
       </div>
       <div className="recipe__tags">
-        {recipe.tags.split(",").map((t) => (
+        {recipe.tags.map((t) => (
           <span>{t}</span>
         ))}
       </div>

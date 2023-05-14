@@ -15,7 +15,7 @@ const Tracker = () => {
       cals: a.meals.reduce((a, i) => a + Number(i.calories), 0),
     };
   });
-  console.log(cals);
+  // console.log(cals);
 
   return (
     <div className="tracker">

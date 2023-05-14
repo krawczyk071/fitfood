@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const recipeSchema = mongoose.Schema({
   name: String,
-  tags: String,
+  tags: [String],
   photo: String,
   ingredients: [String],
-  directions: String,
+  directions: [String],
   time: {
     type: Number,
     default: 60,
