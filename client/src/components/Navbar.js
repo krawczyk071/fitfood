@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -11,35 +12,23 @@ const Navbar = () => {
 
         <ul className="navbar__list">
           <li className="navbar__list__item">
-            <Link smooth to="/">
-              Home
-            </Link>
+            <Link to="/">Home</Link>
           </li>
           <li className="navbar__list__item">
-            <Link smooth to="/#about">
-              AddRecipe
-            </Link>
+            <Link to="/add">AddRecipe</Link>
           </li>
 
           <li className="navbar__list__item">
-            <Link smooth to="/#projects">
-              Discover
-            </Link>
+            <Link to="/meals">Discover</Link>
           </li>
           <li className="navbar__list__item">
-            <Link smooth to="/#contact">
-              MyMenu
-            </Link>
+            <Link to="/menu">MyMenu</Link>
           </li>
           <li className="navbar__list__item">
-            <Link smooth to="/#contact">
-              MealJournal
-            </Link>
+            <Link to="/journal">MealJournal</Link>
           </li>
           <li className="navbar__list__item">
-            <Link smooth to="/#contact">
-              User
-            </Link>
+            <Link to="/auth">User</Link>
           </li>
         </ul>
       </nav>
@@ -49,6 +38,6 @@ const Navbar = () => {
 
 export default Navbar;
 
-const Link = (props) => {
-  return <a href={props.to}>{props.children}</a>;
-};
+// const Link = (props) => {
+//   return <a href={props.to}>{props.children}</a>;
+// };
