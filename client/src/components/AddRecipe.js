@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addRecipe, getRecipesStatus } from "../redux/features/recipesSlice";
+import { useDispatch } from "react-redux";
+import { addRecipe } from "../redux/features/recipesSlice";
 
 function postProcessForm(formData) {
   return {
