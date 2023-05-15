@@ -38,8 +38,6 @@ const Login = () => {
 
       setFormData(formInit);
       toast.success("loged in");
-
-      alert("login OK");
     } catch (err) {
       console.error("Failed to login user", err.message);
       toast.error(err.message);
