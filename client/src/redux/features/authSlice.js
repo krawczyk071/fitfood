@@ -1,30 +1,60 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import authService from "./authService";
 
-const AUTH_URL = "http://localhost:5000/auth";
+// Get user from localStorage
+const user = JSON.parse(localStorage.getItem("user"));
+
 const initialState = {
-  data: [],
+  data: user ? user : null,
   status: "idle", // idle, loading, success, failed
   error: null,
 };
 
-export const addUser = createAsyncThunk("auth/addUser", async (formData) => {
-  const response = await axios.post(AUTH_URL + "/register", formData);
-  return response.data;
-});
+export const addUser = createAsyncThunk(
+  "auth/addUser",
+  async (formData, thunkAPI) => {
+    try {
+      return await authService.register(formData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async (formData) => {
-    const response = await axios.post(AUTH_URL + "/login", formData);
-    return response.data;
+  async (formData, thunkAPI) => {
+    try {
+      return await authService.login(formData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
 );
+export const logout = createAsyncThunk("auth/logout", async () => {
+  await authService.logout();
+});
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addUser.pending, (state) => {
@@ -37,18 +67,30 @@ export const authSlice = createSlice({
       })
       .addCase(addUser.rejected, (state, action) => {
         state.loading = "failed";
-        state.error = action.error.message;
+        state.error = action.error;
+      })
+
+      .addCase(loginUser.pending, (state) => {
+        state.status = "loading";
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "success";
-        console.log(action.payload);
+        console.log("tu1", action.payload);
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error;
+      })
+
+      .addCase(logout.fulfilled, (state) => {
+        state = initialState;
       });
   },
 });
 
 export const selectUser = (state) => state.auth.data;
 
-// export const {  } = tatsSlice.actions;
+export const { reset } = authSlice.actions;
 
 export default authSlice.reducer;

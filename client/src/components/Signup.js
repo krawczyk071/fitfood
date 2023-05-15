@@ -1,13 +1,29 @@
-import React, { useState } from "react";
-import { addUser } from "../redux/features/authSlice";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { addUser, reset } from "../redux/features/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const [formStatus, setFormStatus] = useState("idle");
   const dispatch = useDispatch();
-  const [alerts, setAlerts] = useState("");
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth);
+
+  const [formStatus, setFormStatus] = useState("idle");
   const formInit = { username: "", password: "", password2: "" };
   const [formData, setFormData] = useState(formInit);
+
+  useEffect(() => {
+    if (user.status === "error") {
+      toast.error(user.error);
+    }
+
+    if (user.status === "success" || user.data) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, navigate, dispatch]);
 
   function onChange(e) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -17,7 +33,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (!formData.password || formData.password !== formData.password2) {
-      alert("Password dont match");
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -26,10 +42,10 @@ const Signup = () => {
       await dispatch(addUser(formData)).unwrap();
 
       setFormData(formInit);
-      setAlerts("user added");
+      toast.success("user added");
     } catch (err) {
       console.error("Failed to add user", err.message);
-      setAlerts("Failed to add user");
+      toast.error("Failed to add user");
     } finally {
       setFormStatus("idle");
     }

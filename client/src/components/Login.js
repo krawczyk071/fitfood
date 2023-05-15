@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, selectUser } from "../redux/features/authSlice";
-import { useCookies } from "react-cookie";
+import { loginUser, reset } from "../redux/features/authSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formStatus, setFormStatus] = useState("idle");
   const dispatch = useDispatch();
-  const [alerts, setAlerts] = useState("");
+  const navigate = useNavigate();
+
   const formInit = { username: "", password: "" };
   const [formData, setFormData] = useState(formInit);
-  const [, setCookies] = useCookies(["access_token"]);
-  const user = useSelector(selectUser);
+
+  const user = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (user.status === "error") {
+      toast.error(user.error);
+    }
+
+    if (user.status === "success" || user.data) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, navigate, dispatch]);
 
   function onChange(e) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -24,13 +37,12 @@ const Login = () => {
       await dispatch(loginUser(formData)).unwrap();
 
       setFormData(formInit);
-      setAlerts("loged in");
-      setCookies("access_token", user.token);
-      localStorage.setItem("userId", user.userID);
+      toast.success("loged in");
+
       alert("login OK");
     } catch (err) {
       console.error("Failed to login user", err.message);
-      setAlerts("Failed to login user");
+      toast.error(err.message);
     } finally {
       setFormStatus("idle");
     }

@@ -1,33 +1,32 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes, selectAllRecipes } from "../redux/features/recipesSlice";
+import { logout } from "../redux/features/authSlice";
 import Recipe from "./Recipe";
 import AddRecipe from "./AddRecipe";
-import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
 
 const Test = () => {
-  function logout() {
-    setCookies("access_token", "");
-    localStorage.removeItem("userId");
+  function onLogout() {
+    dispatch(logout);
     // navigate
-    alert("loggedOUT");
+    toast.info("loggedOUT");
   }
   const recipes = useSelector(selectAllRecipes);
   const dispatch = useDispatch();
-  const [cookies, setCookies] = useCookies(["access_token"]);
-  console.log("c", cookies);
+
+  // const [cookies, setCookies] = useCookies(["access_token"]);
 
   useEffect(() => {
     dispatch(fetchRecipes());
   }, [dispatch]);
 
-  // console.log("t", recipes);
   return (
     <>
       <Recipe recipe={recipes[0]} />
       <AddRecipe edit={recipes[0]} />
-      <h2>{cookies.length > 0 ? "Y" : "N"}</h2>
-      <button onClick={logout}>logout</button>
+      {/* <h2>{cookies.length > 0 ? "Y" : "N"}</h2> */}
+      <button onClick={onLogout}>logout</button>
     </>
   );
 };
