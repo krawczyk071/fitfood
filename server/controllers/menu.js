@@ -17,15 +17,13 @@ export const getMenu = async (req, res) => {
 export const addToMenu = async (req, res) => {
   const { userId, recipeId } = req.body;
 
-  const newMenu = new Menu({
-    userId,
-    recipeId,
-  });
-
   try {
-    await newMenu.save();
+    const newMenu = await Menu.create({
+      text: req.body.recipeId,
+      user: req.user.id,
+    });
 
-    res.status(201).json(newMenu);
+    res.status(200).json(newMenu);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
