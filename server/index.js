@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 
 import usersRoutes from "./routes/users.js";
 import recipesRoutes from "./routes/recipes.js";
+import menuRoutes from "./routes/menu.js";
 
 const app = express();
 dotenv.config();

@@ -16,6 +16,14 @@ export const fetchRecipes = createAsyncThunk(
   }
 );
 
+// export const getRecipe = createAsyncThunk(
+//   "recipes/getRecipe",
+//   async () => {
+//     const response = await axios.get(RECIPES_URL);
+//     return response.data;
+//   }
+// );
+
 export const addRecipe = createAsyncThunk(
   "recipes/addRecipe",
   async (formData) => {

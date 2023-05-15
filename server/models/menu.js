@@ -7,4 +7,4 @@ const menuSchema = mongoose.Schema({
 
 const Menu = mongoose.model("Menu", menuSchema);
 
-export default User;
+export default Menu;
