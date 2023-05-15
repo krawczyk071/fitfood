@@ -52,7 +52,8 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      return initialState;
+      state.status = "idle";
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
