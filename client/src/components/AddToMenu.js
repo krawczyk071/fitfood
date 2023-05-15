@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToMenu } from "../redux/features/menuSlice";
 
 const AddToMenu = () => {
   const recipes = useSelector((state) => state.recipes);
+  const dispatch = useDispatch();
 
   const formInit = { meals: "6460c7dca0b02eef97df702e" };
   const [formData, setFormData] = useState(formInit);
@@ -12,6 +14,7 @@ const AddToMenu = () => {
   }
   async function onSubmit(e) {
     e.preventDefault();
+    dispatch(addToMenu(formData.meals));
   }
 
   return (

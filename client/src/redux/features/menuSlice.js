@@ -11,7 +11,8 @@ export const addToMenu = createAsyncThunk(
   "menu/add",
   async (recipeId, thunkAPI) => {
     try {
-      return await menuService.add(recipeId);
+      const token = thunkAPI.getState().auth.data.token;
+      return await menuService.add(recipeId, token);
     } catch (error) {
       const message =
         (error.response &&

@@ -15,12 +15,10 @@ export const getMenu = async (req, res) => {
 };
 
 export const addToMenu = async (req, res) => {
-  const { userId, recipeId } = req.body;
-
   try {
     const newMenu = await Menu.create({
-      text: req.body.recipeId,
-      user: req.user.id,
+      recipeId: req.body.recipeId,
+      userId: req.user.id,
     });
 
     res.status(200).json(newMenu);
