@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes, selectAllRecipes } from "../redux/features/recipesSlice";
-import { logout } from "../redux/features/authSlice";
+import { logoutUser, lout } from "../redux/features/authSlice";
 import Recipe from "./Recipe";
 import AddRecipe from "./AddRecipe";
 import { toast } from "react-toastify";
 
 const Test = () => {
   function onLogout() {
-    dispatch(logout);
+    dispatch(logoutUser());
     // navigate
     toast.info("loggedOUT");
   }

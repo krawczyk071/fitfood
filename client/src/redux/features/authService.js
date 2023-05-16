@@ -30,7 +30,6 @@ const login = async (userData) => {
 // Logout user
 const logout = () => {
   localStorage.removeItem("user");
-  console.log("lout");
   // setCookies("access_token", "");
   // localStorage.removeItem("userId");
 };

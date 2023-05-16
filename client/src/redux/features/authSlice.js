@@ -43,7 +43,8 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-export const logout = createAsyncThunk("auth/logout", async () => {
+export const logoutUser = createAsyncThunk("auth/logout", async () => {
+  console.log("lout e");
   await authService.logout();
   console.log("lout0");
 });
@@ -53,6 +54,11 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.status = "idle";
+      state.error = null;
+    },
+    lout: (state) => {
+      localStorage.removeItem("user");
       state.status = "idle";
       state.error = null;
     },
@@ -85,14 +91,14 @@ export const authSlice = createSlice({
         state.error = action.error;
       })
 
-      .addCase(logout.fulfilled, (state) => {
-        state = initialState;
+      .addCase(logoutUser.fulfilled, (state) => {
+        return initialState;
       });
   },
 });
 
 export const selectUser = (state) => state.auth.data;
 
-export const { reset } = authSlice.actions;
+export const { reset, lout } = authSlice.actions;
 
 export default authSlice.reducer;
