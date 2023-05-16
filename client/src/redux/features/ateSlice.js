@@ -43,6 +43,19 @@ export const fetchAllAte = createAsyncThunk(
   }
 );
 
+export const delFromAte = createAsyncThunk("ate/del", async (id, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.data.token;
+    return await ateService.del(id, token);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 export const ateSlice = createSlice({
   name: "ate",
   initialState,
@@ -68,6 +81,18 @@ export const ateSlice = createSlice({
         state.status = "success";
       })
       .addCase(fetchAllAte.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error;
+      })
+      .addCase(delFromAte.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(delFromAte.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.data = state.data.filter((ate) => ate._id !== action.payload.id);
+        state.status = "success";
+      })
+      .addCase(delFromAte.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error;
       });

@@ -23,9 +23,20 @@ const fetchAll = async (token) => {
   return response.data;
 };
 
+const del = async (ateId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(API_URL + ateId, config);
+  return response.data;
+};
+
 const ateService = {
   add,
   fetchAll,
+  del,
 };
 
 export default ateService;

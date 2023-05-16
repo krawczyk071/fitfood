@@ -27,3 +27,17 @@ export const addToAte = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+export const delFromAte = async (req, res) => {
+  try {
+    await Ate.findByIdAndRemove(req.params.id);
+
+    // if (ate.userId.toString() !== req.user.id) {
+    //   res.status(401)
+    //   throw new Error('User not authorized')
+    // }
+
+    res.status(200).json({ id: req.params.id });
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};

@@ -1,6 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { delFromAte } from "../redux/features/ateSlice";
 
 const TrackList = ({ data }) => {
+  const dispatch = useDispatch();
+  // import { toast } from "react-toastify";
+
+  function onDelete(id) {
+    dispatch(delFromAte(id));
+  }
   return (
     <div className="tracklist">
       <h2 className="tracker__title">Last 5 days</h2>
@@ -12,10 +20,13 @@ const TrackList = ({ data }) => {
               {a.meals.map((m) => (
                 <li
                   className="tracklist__recent__day__list__item"
-                  key={a.date + m.id}
+                  key={a.date + m.meal._id}
                 >
-                  {m.name}
-                  <div className="tracklist__recent__day__list__item__btn">
+                  {m.meal.name}
+                  <div
+                    className="tracklist__recent__day__list__item__btn"
+                    onClick={() => onDelete(m._id)}
+                  >
                     <i class="fa-regular fa-trash-can"></i>
                   </div>
                 </li>

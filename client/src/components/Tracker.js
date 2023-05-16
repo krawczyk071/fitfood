@@ -22,38 +22,37 @@ const Tracker = () => {
   const menuIds = menu.map((m) => m.recipeId);
   const my = recipes.filter((r) => menuIds.includes(r._id));
 
-  const ateGroup = ate.reduce((a, i) => {
+  const ateRich = ate.map((a) => {
     return {
       ...a,
-      [i.date]: [...(a[i.date] || []), i.recipeId],
+      meal: recipes.find((r) => r._id === a.recipeId),
+    };
+  });
+
+  const ateRichGroup = ateRich.reduce((a, i) => {
+    return {
+      ...a,
+      [i.date]: [...(a[i.date] || []), i],
     };
   }, {});
-  const ateGroupArr = Object.keys(ateGroup).map((k) => {
+  const ateGroupArr = Object.keys(ateRichGroup).map((k) => {
     return {
       date: k,
-      meals: ateGroup[k],
+      meals: ateRichGroup[k],
     };
   });
 
   console.log("a", ate);
-  console.log("ag", ateGroup);
+  console.log("ag", ateRichGroup);
   console.log("aga", ateGroupArr);
-
-  const ateRich = ateGroupArr.map((a) => {
-    return {
-      ...a,
-      // meals: recipes.find((r) => r._id === a.recipeId),
-      meals: a.meals.map((a) => recipes.find((r) => r.id === a.recipeId)),
-    };
-  });
 
   //grupby then sort thjen slice last5
   //najpierw warunek ze data wieksza od, sort
 
-  const cals = ateRich.slice(-5).map((a) => {
+  const cals = ateGroupArr.slice(-5).map((a) => {
     return {
       date: a.date,
-      cals: a.meals.reduce((a, i) => a + Number(i.calories), 0),
+      cals: a.meals.reduce((a, i) => a + Number(i.meal.calories), 0),
     };
   });
 
@@ -76,7 +75,7 @@ const Tracker = () => {
       <h1 className="tracker__title">Meal Journal</h1>
       <h2 className="tracker__title">Recent calories</h2>
       <Chart cals={cals} />
-      <TrackList data={ateRich} />
+      <TrackList data={ateGroupArr} />
       <TrackMeal data={my} />
     </div>
   );
