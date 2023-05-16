@@ -35,6 +35,7 @@ export const createRecipe = async (req, res) => {
     time,
     servings,
     calories,
+    author: req.user.username,
   });
 
   try {

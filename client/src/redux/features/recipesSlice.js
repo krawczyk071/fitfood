@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import recipesService from "./recipesService";
 
 const RECIPES_URL = "http://localhost:5000/recipes";
 const initialState = {
@@ -8,14 +9,29 @@ const initialState = {
   error: null,
 };
 
+// export const fetchRecipes = createAsyncThunk(
+//   "recipes/fetchRecipes",
+//   async () => {
+//     const response = await axios.get(RECIPES_URL);
+//     return response.data;
+//   }
+// );
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchRecipes",
-  async () => {
-    const response = await axios.get(RECIPES_URL);
-    return response.data;
+  async (thunkAPI) => {
+    try {
+      return await recipesService.fetch();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
 );
-
 // export const getRecipe = createAsyncThunk(
 //   "recipes/getRecipe",
 //   async () => {
@@ -24,11 +40,28 @@ export const fetchRecipes = createAsyncThunk(
 //   }
 // );
 
+// export const addRecipe = createAsyncThunk(
+//   "recipes/addRecipe",
+//   async (formData) => {
+//     const response = await axios.post(RECIPES_URL, formData);
+//     return response.data;
+//   }
+// );
 export const addRecipe = createAsyncThunk(
   "recipes/addRecipe",
-  async (formData) => {
-    const response = await axios.post(RECIPES_URL, formData);
-    return response.data;
+  async (formData, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.data.token;
+      return await recipesService.add(formData, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
   }
 );
 

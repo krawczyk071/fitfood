@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addRecipe } from "../redux/features/recipesSlice";
+import { toast } from "react-toastify";
 
 function postProcessForm(formData) {
   return {
@@ -22,7 +23,6 @@ function preProcessForm(formData) {
 const AddRecipe = ({ edit }) => {
   // const RecipesStatus = useSelector(getRecipesStatus);
   const [addStatus, setAddStatus] = useState("idle");
-  const [alerts, setAlerts] = useState("");
 
   const formInit = {
     name: "",
@@ -50,10 +50,9 @@ const AddRecipe = ({ edit }) => {
       await dispatch(addRecipe(postProcessForm(formData))).unwrap();
 
       setFormData(formInit);
-      setAlerts("Recipe added");
+      toast.success("Recipe added");
     } catch (err) {
-      console.error("Failed to add recipe", err.message);
-      setAlerts("Failed to add recipe");
+      toast.error(err.message);
     } finally {
       setAddStatus("idle");
     }
@@ -165,7 +164,6 @@ const AddRecipe = ({ edit }) => {
         <button type="submit" className="btn" disabled={addStatus !== "idle"}>
           Submit
         </button>
-        <h2>{alerts}</h2>
       </form>
     </div>
   );

@@ -16,6 +16,7 @@ const recipeSchema = mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  author: String,
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
