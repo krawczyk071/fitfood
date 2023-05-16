@@ -5,6 +5,8 @@ const Recipe = ({ recipe }) => {
   if (!recipe) {
     recipe = recipes[0];
   }
+  //change
+  const user = true;
 
   return (
     <div className="recipe">
@@ -30,6 +32,21 @@ const Recipe = ({ recipe }) => {
       <div className="recipe__directions">
         <h2>Directions</h2>
         <p>{recipe.directions}</p>
+      </div>
+      <div className="recipe__author">
+        <div className="recipe__author__name">
+          <h2>Author</h2>
+          <p>{recipe.author}</p>
+        </div>
+        {user && (
+          <>
+            <div className="recipe__author__edit">Edit</div>
+            <div className="recipe__author__del">Delete</div>
+          </>
+        )}
+      </div>
+      <div className="recipe__add">
+        <button className="btn">Save to MyMenu</button>
       </div>
       <div className="recipe__info">
         <div className="recipe__info__item">

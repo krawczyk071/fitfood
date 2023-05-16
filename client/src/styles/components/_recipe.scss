@@ -10,13 +10,14 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: minmax(100px, 20%) 1fr;
-  grid-template-rows: repeat(5fr);
+  grid-template-rows: repeat(6fr);
   grid-template-areas:
     "a a"
     "b c"
     "b d"
     "b e"
-    "b f";
+    "b f"
+    "h g";
 
   ul {
     list-style: circle;
@@ -69,5 +70,25 @@
       margin: 0.2rem;
       display: inline-block;
     }
+  }
+  &__author {
+    grid-area: g;
+    display: flex;
+    align-items: center;
+    &__name {
+      flex: 1;
+    }
+    &__del,
+    &__edit {
+      padding: 1rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  &__add {
+    grid-area: h;
+    // align-self: center;
+    justify-self: center;
+    padding-right: 1rem;
   }
 }

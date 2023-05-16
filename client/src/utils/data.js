@@ -12,6 +12,7 @@ export const recipes = [
     time: "90",
     servings: "4",
     calories: "1230",
+    author: "Jake",
   },
   {
     id: 1232,
