@@ -9,7 +9,6 @@ const MyMenu = () => {
     <div className="mymenu">
       <h1 className="mymenu__title">Your favorite meals</h1>
       <RecipeList recipes={my} edit />
-      <AddToMenu />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 export const recipes = [
   {
-    id: 1231,
+    _id: 1231,
     name: "Schabowy",
     tags: ["pork", "meat"],
     photo:

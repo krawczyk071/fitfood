@@ -67,7 +67,7 @@ export const loginUser = async (req, res) => {
   }
   // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   const token = generateToken(user._id);
-  res.json({ token, userID: user._id });
+  res.json({ token, username: user.username, userID: user._id });
 };
 
 export const getMe = async (req, res) => {

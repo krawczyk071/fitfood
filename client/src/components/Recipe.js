@@ -1,12 +1,16 @@
 import React from "react";
 import { recipes } from "../utils/data";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import AddToMenuBtn from "./AddToMenuBtn";
 
 const Recipe = ({ recipe }) => {
+  const { data: user } = useSelector((state) => state.auth);
+
   if (!recipe) {
     recipe = recipes[0];
   }
   //change
-  const user = true;
 
   return (
     <div className="recipe">
@@ -38,15 +42,17 @@ const Recipe = ({ recipe }) => {
           <h2>Author</h2>
           <p>{recipe.author}</p>
         </div>
-        {user && (
+        {user && user.username === recipe.author && (
           <>
-            <div className="recipe__author__edit">Edit</div>
+            <div className="recipe__author__edit">
+              <Link to={`/edit/${recipe._id}`}>Edit</Link>
+            </div>
             <div className="recipe__author__del">Delete</div>
           </>
         )}
       </div>
       <div className="recipe__add">
-        <button className="btn">Save to MyMenu</button>
+        <AddToMenuBtn recipeId={recipe._id} />
       </div>
       <div className="recipe__info">
         <div className="recipe__info__item">

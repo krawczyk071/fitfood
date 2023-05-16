@@ -10,6 +10,7 @@ import Menu from "./pages/Menu";
 import Meal from "./pages/Meal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Edit from "./pages/Edit";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/meals" element={<Meals />} />
         <Route path="/meal/:id" element={<Meal />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route path="/menu" element={<Menu />} />
       </Routes>
 
