@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import usersRoutes from "./routes/users.js";
 import recipesRoutes from "./routes/recipes.js";
 import menuRoutes from "./routes/menu.js";
+import ateRoutes from "./routes/ate.js";
 
 const app = express();
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(cors());
 app.use("/auth", usersRoutes);
 app.use("/recipes", recipesRoutes);
 app.use("/menu", menuRoutes);
+app.use("/ate", ateRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;

@@ -15,27 +15,27 @@ export const recipes = [
     author: "Jake",
   },
   {
-    id: 1232,
+    _id: 1232,
     name: "Mielony",
     calories: "1230",
   },
   {
-    id: 1233,
+    _id: 1233,
     name: "Psia karma",
     calories: "1030",
   },
   {
-    id: 1234,
+    _id: 1234,
     name: "Mizria",
     calories: "830",
   },
   {
-    id: 1235,
+    _id: 1235,
     name: "Eskalopki",
     calories: "1930",
   },
   {
-    id: 1236,
+    _id: 1236,
     name: "Kalarepa",
     calories: "330",
   },

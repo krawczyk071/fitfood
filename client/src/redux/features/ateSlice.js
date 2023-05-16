@@ -25,6 +25,24 @@ export const addToAte = createAsyncThunk(
   }
 );
 
+export const fetchAllAte = createAsyncThunk(
+  "ate/fetch",
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.data.token;
+      return await ateService.fetchAll(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const ateSlice = createSlice({
   name: "ate",
   initialState,
@@ -39,6 +57,17 @@ export const ateSlice = createSlice({
         state.status = "success";
       })
       .addCase(addToAte.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error;
+      })
+      .addCase(fetchAllAte.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchAllAte.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "success";
+      })
+      .addCase(fetchAllAte.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error;
       });
