@@ -71,3 +71,12 @@ export const editRecipe = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+export const delRecipe = async (req, res) => {
+  try {
+    await Recipe.findByIdAndRemove(req.params.id);
+
+    res.status(200).json({ id: req.params.id });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

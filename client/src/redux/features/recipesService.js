@@ -22,6 +22,15 @@ const editOne = async (formData, id, token) => {
   const response = await axios.put(API_URL + id, formData, config);
   return response.data;
 };
+const delOne = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(API_URL + id, config);
+  return response.data;
+};
 
 const fetch = async () => {
   const response = await axios.get(API_URL);
@@ -32,6 +41,7 @@ const recipesService = {
   add,
   fetch,
   editOne,
+  delOne,
 };
 
 export default recipesService;

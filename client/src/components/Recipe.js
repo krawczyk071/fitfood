@@ -1,14 +1,27 @@
 import React from "react";
 import { recipes } from "../utils/data";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AddToMenuBtn from "./AddToMenuBtn";
+import { delRecipe } from "../redux/features/recipesSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Recipe = ({ recipe, toggleEdit }) => {
   const { data: user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function onEdit() {
     toggleEdit();
+  }
+  function onDelete() {
+    try {
+      dispatch(delRecipe(recipe._id));
+      toast.success("Recipe deleted");
+      navigate(`/`);
+    } catch (err) {
+      toast.error(err.message);
+    }
   }
 
   if (!recipe) {
@@ -51,7 +64,9 @@ const Recipe = ({ recipe, toggleEdit }) => {
             <div className="recipe__author__edit" onClick={onEdit}>
               Edit
             </div>
-            <div className="recipe__author__del">Delete</div>
+            <div className="recipe__author__del" onClick={onDelete}>
+              Delete
+            </div>
           </>
         )}
       </div>

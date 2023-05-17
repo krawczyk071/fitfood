@@ -83,6 +83,24 @@ export const editRecipe = createAsyncThunk(
   }
 );
 
+export const delRecipe = createAsyncThunk(
+  "recipes/delOne",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.data.token;
+      return await recipesService.delOne(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const recipesSlice = createSlice({
   name: "recipes",
   initialState,
@@ -118,6 +136,21 @@ export const recipesSlice = createSlice({
       .addCase(editRecipe.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+
+      .addCase(delRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(delRecipe.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.data = state.data.filter(
+          (recipe) => recipe._id !== action.payload.id
+        );
+        state.status = "success";
+      })
+      .addCase(delRecipe.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error;
       });
   },
 });
