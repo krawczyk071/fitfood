@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addRecipe } from "../redux/features/recipesSlice";
+import { addRecipe, editRecipe } from "../redux/features/recipesSlice";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function postProcessForm(formData) {
   return {
@@ -20,7 +21,7 @@ function preProcessForm(formData) {
   };
 }
 
-const AddRecipe = ({ edit }) => {
+const AddRecipe = ({ edit, id, toggleEdit }) => {
   // const RecipesStatus = useSelector(getRecipesStatus);
   const [addStatus, setAddStatus] = useState("idle");
 
@@ -41,16 +42,26 @@ const AddRecipe = ({ edit }) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function onSubmit(e) {
     e.preventDefault();
 
     try {
       setAddStatus("pending");
-      await dispatch(addRecipe(postProcessForm(formData))).unwrap();
+      if (!edit) {
+        await dispatch(addRecipe(postProcessForm(formData))).unwrap();
+        toast.success("Recipe added");
+        navigate(`/`);
+      } else {
+        await dispatch(
+          editRecipe({ formData: postProcessForm(formData), id })
+        ).unwrap();
+        toast.success("Recipe updated");
+        toggleEdit();
+      }
 
       setFormData(formInit);
-      toast.success("Recipe added");
     } catch (err) {
       toast.error(err.message);
     } finally {

@@ -6,8 +6,6 @@ const Journal = () => {
   return (
     <>
       <Tracker />
-
-      <Test />
     </>
   );
 };

@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AddToMenuBtn from "./AddToMenuBtn";
 
-const Recipe = ({ recipe }) => {
+const Recipe = ({ recipe, toggleEdit }) => {
   const { data: user } = useSelector((state) => state.auth);
+
+  function onEdit() {
+    toggleEdit();
+  }
 
   if (!recipe) {
     recipe = recipes[0];
@@ -44,8 +48,8 @@ const Recipe = ({ recipe }) => {
         </div>
         {user && user.username === recipe.author && (
           <>
-            <div className="recipe__author__edit">
-              <Link to={`/edit/${recipe._id}`}>Edit</Link>
+            <div className="recipe__author__edit" onClick={onEdit}>
+              Edit
             </div>
             <div className="recipe__author__del">Delete</div>
           </>

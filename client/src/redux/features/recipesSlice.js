@@ -65,6 +65,24 @@ export const addRecipe = createAsyncThunk(
   }
 );
 
+export const editRecipe = createAsyncThunk(
+  "recipes/editOne",
+  async ({ formData, id }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.data.token;
+      return await recipesService.editOne(formData, id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const recipesSlice = createSlice({
   name: "recipes",
   initialState,
@@ -79,11 +97,27 @@ export const recipesSlice = createSlice({
         state.status = "success";
       })
       .addCase(fetchRecipes.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error.message;
       })
       .addCase(addRecipe.fulfilled, (state, action) => {
+        state.status = "success";
         state.data.push(action.payload);
+      })
+
+      .addCase(editRecipe.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(editRecipe.fulfilled, (state, action) => {
+        state.data = [
+          ...state.data.filter((d) => d._id !== action.payload._id),
+          action.payload,
+        ];
+        state.status = "success";
+      })
+      .addCase(editRecipe.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });

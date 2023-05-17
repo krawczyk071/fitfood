@@ -14,6 +14,16 @@ export const getRecipes = async (req, res) => {
   }
 };
 
+export const getOneRecipe = async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id);
+
+    res.status(200).json(recipe);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const createRecipe = async (req, res) => {
   const {
     name,
@@ -44,5 +54,20 @@ export const createRecipe = async (req, res) => {
     res.status(201).json(newRecipe);
   } catch (error) {
     res.status(409).json({ message: error.message });
+  }
+};
+
+export const editRecipe = async (req, res) => {
+  try {
+    const updatedRecipe = await Recipe.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(updatedRecipe);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };
