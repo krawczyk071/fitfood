@@ -1,5 +1,5 @@
 import React from "react";
-import { recipes } from "../utils/data";
+// import { recipes } from "../utils/data";
 import { useDispatch, useSelector } from "react-redux";
 import AddToMenuBtn from "./AddToMenuBtn";
 import { delRecipe } from "../redux/features/recipesSlice";
@@ -24,9 +24,9 @@ const Recipe = ({ recipe, toggleEdit }) => {
     }
   }
 
-  if (!recipe) {
-    recipe = recipes[0];
-  }
+  // if (!recipe) {
+  //   recipe = recipes[0];
+  // }
   //change
 
   return (

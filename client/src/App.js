@@ -11,8 +11,24 @@ import Meal from "./pages/Meal";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Edit from "./pages/Edit";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchRecipes } from "./redux/features/recipesSlice";
+import { fetchAllMenu } from "./redux/features/menuSlice";
+import { fetchAllAte } from "./redux/features/ateSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const { data: user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(fetchRecipes());
+    if (user) {
+      dispatch(fetchAllMenu());
+      dispatch(fetchAllAte());
+    }
+  }, [dispatch, user]);
+
   return (
     <BrowserRouter>
       <Navbar />

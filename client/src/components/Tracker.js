@@ -1,31 +1,38 @@
-import React, { useEffect } from "react";
-import { ate, days, menu, recipes } from "../utils/data";
+import React from "react";
 import Chart from "./Chart";
 import TrackList from "./TrackList";
 import TrackMeal from "./TrackMeal";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllAte } from "../redux/features/ateSlice";
-import { groupBy } from "../utils/helpers";
+import { useSelector } from "react-redux";
+import Loader from "./Loader";
 
 const Tracker = () => {
-  const dispatch = useDispatch();
-  const { data: ate } = useSelector((state) => state.ate);
-  const { data: menu } = useSelector((state) => state.menu);
-  const { data: recipes } = useSelector((state) => state.recipes);
-  useEffect(() => {
-    dispatch(fetchAllAte());
-  }, [dispatch]);
-  if (ate.length < 1) {
+  // const dispatch = useDispatch();
+  const ate = useSelector((state) => state.ate);
+  const menu = useSelector((state) => state.menu);
+  const recipes = useSelector((state) => state.recipes);
+  if (
+    ate.status === "loading" ||
+    menu.status === "loading" ||
+    recipes.status === "loading"
+  ) {
+    return <Loader />;
+  }
+  // useEffect(() => {
+  //   dispatch(fetchAllAte());
+  // }, [dispatch]);
+
+  if (ate.data.length < 1) {
     return <h2>Nothing tracked</h2>;
   }
 
-  const menuIds = menu.map((m) => m.recipeId);
-  const my = recipes.filter((r) => menuIds.includes(r._id));
+  const menuIds = menu.data.map((m) => m.recipeId);
+  const my = recipes.data.filter((r) => menuIds.includes(r._id));
 
-  const ateRich = ate.map((a) => {
+  console.log(ate);
+  const ateRich = ate.data.map((a) => {
     return {
       ...a,
-      meal: recipes.find((r) => r._id === a.recipeId),
+      meal: recipes.data.find((r) => r._id === a.recipeId),
     };
   });
 

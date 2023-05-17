@@ -66,7 +66,7 @@ export const ateSlice = createSlice({
         state.status = "loading";
       })
       .addCase(addToAte.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.data.push(action.payload);
         state.status = "success";
       })
       .addCase(addToAte.rejected, (state, action) => {

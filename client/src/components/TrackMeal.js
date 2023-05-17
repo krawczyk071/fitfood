@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const TrackMeal = ({ data }) => {
   const [formStatus, setFormStatus] = useState("idle");
   const dispatch = useDispatch();
-  const formInit = { date: "Monday", recipeId: "6463471f227b9b2080fa0014" };
+  const formInit = { date: "Monday", recipeId: data._id };
   const [formData, setFormData] = useState(formInit);
 
   function onChange(e) {

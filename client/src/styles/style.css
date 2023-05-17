@@ -617,6 +617,13 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   display: flex;
   justify-content: space-between;
 }
+.tracklist__recent__day__list__item__btn {
+  cursor: pointer;
+}
+.tracklist__recent__day__list__item__btn:hover {
+  transform: scale(1.2);
+}
+
 .trackmeal {
   width: 100%;
   display: flex;
@@ -655,10 +662,13 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   align-items: center;
   justify-content: center;
 }
-.discover__title {
-  align-self: flex-start;
+.discover__top {
+  align-self: stretch;
+  display: flex;
 }
-
+.discover__top__title {
+  flex: 1;
+}
 .chart {
   display: flex;
   height: 250px;
@@ -673,7 +683,7 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 }
 .chart__section__cont {
   flex: 1;
-  width: 80px;
+  width: 90px;
   background: #eeeded;
   display: flex;
   align-items: flex-end;

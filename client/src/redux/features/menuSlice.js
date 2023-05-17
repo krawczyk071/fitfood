@@ -70,7 +70,7 @@ export const menuSlice = createSlice({
         state.status = "loading";
       })
       .addCase(addToMenu.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.data.push(action.payload);
         state.status = "success";
       })
       .addCase(addToMenu.rejected, (state, action) => {
