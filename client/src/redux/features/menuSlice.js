@@ -42,6 +42,23 @@ export const fetchAllMenu = createAsyncThunk(
     }
   }
 );
+export const delFromMenu = createAsyncThunk(
+  "menu/del",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.data.token;
+      return await menuService.del(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const menuSlice = createSlice({
   name: "menu",
@@ -57,7 +74,7 @@ export const menuSlice = createSlice({
         state.status = "success";
       })
       .addCase(addToMenu.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error;
       })
       .addCase(fetchAllMenu.pending, (state) => {
@@ -68,7 +85,21 @@ export const menuSlice = createSlice({
         state.status = "success";
       })
       .addCase(fetchAllMenu.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
+        state.error = action.error;
+      })
+
+      .addCase(delFromMenu.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(delFromMenu.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (item) => item._id !== action.payload.id
+        );
+        state.status = "success";
+      })
+      .addCase(delFromMenu.rejected, (state, action) => {
+        state.status = "failed";
         state.error = action.error;
       });
   },

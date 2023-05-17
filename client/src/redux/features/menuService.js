@@ -21,10 +21,20 @@ const fetchAll = async (token) => {
   const response = await axios.get(API_URL, config);
   return response.data;
 };
+const del = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(API_URL + id, config);
+  return response.data;
+};
 
 const menuService = {
   add,
   fetchAll,
+  del,
 };
 
 export default menuService;
