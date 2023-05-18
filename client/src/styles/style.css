@@ -341,11 +341,16 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   text-align: center;
   margin: 0.3rem;
 }
-.navbar__list__item a {
+.navbar__list__item a,
+.navbar__list__item div {
   color: #f1fff9;
   text-decoration: none;
+  cursor: pointer;
 }
-.navbar__list__item a a:hover {
+.navbar__list__item a a:hover,
+.navbar__list__item a div:hover,
+.navbar__list__item div a:hover,
+.navbar__list__item div div:hover {
   text-decoration: underline;
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
+import LoginBtn from "./LoginBtn";
 
 const Navbar = () => {
   return (
@@ -28,7 +29,7 @@ const Navbar = () => {
             <Link to="/journal">MealJournal</Link>
           </li>
           <li className="navbar__list__item">
-            <Link to="/auth">User</Link>
+            <LoginBtn />
           </li>
         </ul>
       </nav>

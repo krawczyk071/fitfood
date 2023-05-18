@@ -84,7 +84,6 @@ export const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "success";
-        console.log("tu1", action.payload);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = "failed";
@@ -92,7 +91,8 @@ export const authSlice = createSlice({
       })
 
       .addCase(logoutUser.fulfilled, (state) => {
-        return initialState;
+        state.data = null;
+        state.status = "idle";
       });
   },
 });
