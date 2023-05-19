@@ -60,6 +60,10 @@ blockquote, q {
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+}
+
 .btn {
   background-color: rgba(23, 26, 32, 0.8);
   border: none;
@@ -465,6 +469,9 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 .login__title {
   align-self: flex-start;
 }
+.login p {
+  cursor: pointer;
+}
 .login__form {
   width: clamp(200px, 70%, 768px);
   display: flex;
@@ -727,6 +734,12 @@ body {
   background: linear-gradient(135deg, #e8e8e8, #f3f4f6);
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 h1 {
   font-size: 1.3rem;
   padding-bottom: 0.6rem;
@@ -749,4 +762,8 @@ p {
 .lbl {
   font-weight: bold;
   align-self: flex-start;
+}
+
+.container {
+  height: 100%;
 }/*# sourceMappingURL=style.css.map */

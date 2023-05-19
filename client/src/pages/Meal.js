@@ -22,13 +22,17 @@ const Meal = () => {
     fetch();
   }, [id, editMode]);
 
-  if (!recipe) {
-    return <Loader />;
-  } else if (editMode) {
-    return <AddRecipe edit={recipe} id={id} toggleEdit={toggleEdit} />;
-  } else {
-    return <Recipe recipe={recipe} toggleEdit={toggleEdit} />;
-  }
+  return (
+    <div className="container">
+      {!recipe ? (
+        <Loader />
+      ) : editMode ? (
+        <AddRecipe edit={recipe} id={id} toggleEdit={toggleEdit} />
+      ) : (
+        <Recipe recipe={recipe} toggleEdit={toggleEdit} />
+      )}
+    </div>
+  );
 };
 
 export default Meal;

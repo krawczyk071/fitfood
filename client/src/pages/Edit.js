@@ -5,10 +5,10 @@ import AddRecipe from "../components/AddRecipe";
 const Edit = () => {
   const { id } = useParams();
   return (
-    <>
+    <div className="container">
       <div>{id}</div>
       <AddRecipe edit />
-    </>
+    </div>
   );
 };
 

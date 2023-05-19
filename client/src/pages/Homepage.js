@@ -13,7 +13,7 @@ const Homepage = () => {
       recipes.data[Math.ceil(Math.random() * (recipes.data.length - 1))];
   }
   return (
-    <>
+    <div className="container">
       <Hero />
 
       {recipes.status !== "success" ? (
@@ -21,7 +21,7 @@ const Homepage = () => {
       ) : (
         <Recipe recipe={randRecipe} />
       )}
-    </>
+    </div>
   );
 };
 

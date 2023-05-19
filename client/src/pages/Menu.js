@@ -26,9 +26,9 @@ const Menu = () => {
   }, [user, navigate, dispatch]);
 
   return (
-    <>
+    <div className="container">
       <MyMenu />
-    </>
+    </div>
   );
 };
 

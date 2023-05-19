@@ -3,9 +3,9 @@ import Tracker from "../components/Tracker";
 
 const Journal = () => {
   return (
-    <>
+    <div className="container">
       <Tracker />
-    </>
+    </div>
   );
 };
 

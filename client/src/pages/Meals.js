@@ -3,9 +3,9 @@ import Discover from "../components/Discover";
 
 const Meals = () => {
   return (
-    <>
+    <div className="container">
       <Discover />
-    </>
+    </div>
   );
 };
 

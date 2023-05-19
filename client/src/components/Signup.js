@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ toggleUser }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth);
@@ -98,6 +98,7 @@ const Signup = () => {
           Signup
         </button>
       </form>
+      <p onClick={toggleUser}>Already a user - Login</p>
     </div>
   );
 };

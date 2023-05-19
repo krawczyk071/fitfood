@@ -6,6 +6,9 @@
   &__title {
     align-self: flex-start;
   }
+  p {
+    cursor: pointer;
+  }
   &__form {
     width: clamp(200px, 70%, $break-md);
     display: flex;

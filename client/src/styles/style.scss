@@ -39,6 +39,11 @@ body {
   color: $text1;
   background: $gradient2;
 }
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 h1 {
   font-size: 1.3rem;
   padding-bottom: 0.6rem;
@@ -58,4 +63,7 @@ p {
 .lbl {
   font-weight: bold;
   align-self: flex-start;
+}
+.container {
+  height: 100%;
 }

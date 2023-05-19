@@ -4,7 +4,7 @@ import { loginUser, reset } from "../redux/features/authSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ toggleUser }) => {
   const [formStatus, setFormStatus] = useState("idle");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +49,6 @@ const Login = () => {
   return (
     <div className="login">
       <h1 className="login__title">Login</h1>
-      <div className="login__alert">Error: cant do that</div>
       <form onSubmit={onSubmit} className="login__form">
         <label htmlFor="login" className="lbl">
           Login
@@ -83,6 +82,7 @@ const Login = () => {
           Login
         </button>
       </form>
+      <p onClick={toggleUser}>Not a user yet - Register</p>
     </div>
   );
 };
