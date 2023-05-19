@@ -5,9 +5,10 @@ import { addToAte } from "../redux/features/ateSlice";
 import { toast } from "react-toastify";
 
 const TrackMeal = ({ data }) => {
+  console.log({ data });
   const [formStatus, setFormStatus] = useState("idle");
   const dispatch = useDispatch();
-  const formInit = { date: "Monday", recipeId: data._id };
+  const formInit = { date: "Monday", recipeId: data[0]._id };
   const [formData, setFormData] = useState(formInit);
 
   function onChange(e) {
@@ -16,7 +17,7 @@ const TrackMeal = ({ data }) => {
 
   async function onSubmit(e) {
     e.preventDefault();
-
+    console.log({ formData });
     try {
       setFormStatus("pending");
       await dispatch(addToAte(formData)).unwrap();

@@ -38,14 +38,43 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
   const [formData, setFormData] = useState(
     edit ? preProcessForm(edit) : formInit
   );
+
   function onChange(e) {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
+
+  function validateForm() {
+    const {
+      name,
+      photo,
+      tags,
+      time,
+      servings,
+      calories,
+      ingredients,
+      directions,
+    } = formData;
+
+    if (!(name || ingredients || directions || photo)) {
+      throw new Error("Fill mandatory fields");
+    }
+    if (![time, servings, calories].every((n) => parseInt(n))) {
+      throw new Error("Only numbbers allowed for time, servings, calories");
+    }
+  }
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   async function onSubmit(e) {
     e.preventDefault();
+
+    try {
+      validateForm();
+    } catch (error) {
+      toast.error(error.message);
+      return;
+    }
 
     try {
       setAddStatus("pending");
@@ -72,7 +101,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
   return (
     <div className="addrecipe">
       <h1 className="addrecipe__title">Add Recipe</h1>
-      <form onSubmit={onSubmit} className="addrecipe__form" autocomplete="off">
+      <form onSubmit={onSubmit} className="addrecipe__form" autoComplete="off">
         <label htmlFor="name" className="lbl">
           name
         </label>
@@ -81,7 +110,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
           type="text"
           name="name"
           id="name"
-          autocomplete="off"
+          autoComplete="off"
           value={formData?.name}
           onChange={onChange}
         />
@@ -92,7 +121,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
           value={formData?.photo}
           onChange={onChange}
           className="ipt"
-          type="text"
+          type="url"
           name="photo"
           id="photo"
         />{" "}
@@ -116,7 +145,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
               value={formData?.time}
               onChange={onChange}
               className="ipt"
-              type="text"
+              type="number"
               name="time"
               id="time"
             />
@@ -129,7 +158,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
               value={formData?.servings}
               onChange={onChange}
               className="ipt"
-              type="text"
+              type="number"
               name="servings"
               id="servings"
             />
@@ -142,7 +171,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
               value={formData?.calories}
               onChange={onChange}
               className="ipt"
-              type="text"
+              type="number"
               name="calories"
               id="calories"
             />

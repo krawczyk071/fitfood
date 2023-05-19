@@ -39,14 +39,14 @@ const Recipe = ({ recipe, toggleEdit }) => {
       </div>
       <div className="recipe__tags">
         {recipe.tags.map((t) => (
-          <span>{t}</span>
+          <span key={t}>{t}</span>
         ))}
       </div>
       <div className="recipe__ingredients">
         <h2>Ingredients</h2>
         <ul>
           {recipe.ingredients.map((i) => (
-            <li>{i}</li>
+            <li key={i}>{i}</li>
           ))}
         </ul>
       </div>

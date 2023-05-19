@@ -3,12 +3,13 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="footer">
-      <h1>FitFood</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-        inventore quisquam labore veritatis vitae accusamus est eligendi tenetur
-        cumque dolore.
-      </p>
+      <div className="footer__body">
+        <h3>FitFood</h3>
+        <p>
+          nutrition you deserve - find delicious recipes and track your every
+          meal.
+        </p>
+      </div>
     </div>
   );
 };

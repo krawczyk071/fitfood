@@ -27,7 +27,7 @@ const TrackList = ({ data }) => {
                     className="tracklist__recent__day__list__item__btn"
                     onClick={() => onDelete(m._id)}
                   >
-                    <i class="fa-regular fa-trash-can"></i>
+                    <i className="fa-regular fa-trash-can"></i>
                   </div>
                 </li>
               ))}

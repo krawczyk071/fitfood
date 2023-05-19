@@ -2,4 +2,19 @@
   background: $bg-secondary;
   color: $text2;
   padding: 1rem;
+
+  &__body {
+    margin: 0 auto;
+    max-width: 910px;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    color: $text2;
+    h3 {
+      color: $secondary;
+      font-family: "Catamaran", sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+    }
+  }
 }

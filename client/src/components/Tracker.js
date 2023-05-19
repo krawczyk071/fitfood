@@ -21,18 +21,18 @@ const Tracker = () => {
   //   dispatch(fetchAllAte());
   // }, [dispatch]);
 
-  if (ate.data.length < 1) {
-    return (
-      <div className="info">
-        <h2>Nothing tracked</h2>
-      </div>
-    );
-  }
+  // if (ate.data.length < 1) {
+  //   return (
+  //     <div className="info">
+  //       <h2>Nothing tracked</h2>
+  //     </div>
+  //   );
+  // }
 
   const menuIds = menu.data.map((m) => m.recipeId);
   const my = recipes.data.filter((r) => menuIds.includes(r._id));
 
-  console.log(ate);
+  // console.log(ate);
   const ateRich = ate.data.map((a) => {
     return {
       ...a,
@@ -53,7 +53,7 @@ const Tracker = () => {
     };
   });
 
-  console.log("a", ate);
+  // console.log("a", ate);
   console.log("ag", ateRichGroup);
   console.log("aga", ateGroupArr);
 
@@ -85,8 +85,14 @@ const Tracker = () => {
     <div className="tracker">
       <h1 className="tracker__title">Meal Journal</h1>
       <h2 className="tracker__title">Recent calories</h2>
-      <Chart cals={cals} />
-      <TrackList data={ateGroupArr} />
+      {!ate.data ? (
+        <h2>Nothing tracked yet</h2>
+      ) : (
+        <>
+          <Chart cals={cals} />
+          <TrackList data={ateGroupArr} />
+        </>
+      )}
       <TrackMeal data={my} />
     </div>
   );

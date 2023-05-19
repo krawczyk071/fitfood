@@ -19,14 +19,14 @@ const RecipeList = ({ recipes, edit }) => {
   return (
     <div className="recipelist">
       {recipes.map((m) => (
-        <div className="recipelist__item">
+        <div className="recipelist__item" key={m._id}>
           <Link to={`/meal/${m._id}`}>{m.name}</Link>
           {edit && (
             <div
               className="recipelist__item__btn"
               onClick={() => onDelete(m.menuId)}
             >
-              <i class="fa-regular fa-trash-can"></i>
+              <i className="fa-regular fa-trash-can"></i>
             </div>
           )}
         </div>
