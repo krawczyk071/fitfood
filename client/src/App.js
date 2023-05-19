@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { fetchRecipes } from "./redux/features/recipesSlice";
 import { fetchAllMenu } from "./redux/features/menuSlice";
 import { fetchAllAte } from "./redux/features/ateSlice";
+import AuthRequired from "./components/AuthRequired";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,13 +35,15 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        <Route path="/journal" element={<Journal />} />
-        <Route path="/add" element={<Add />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/meals" element={<Meals />} />
         <Route path="/meal/:id" element={<Meal />} />
-        <Route path="/edit/:id" element={<Edit />} />
-        <Route path="/menu" element={<Menu />} />
+        <Route element={<AuthRequired />}>
+          <Route path="/journal" element={<Journal />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/edit/:id" element={<Edit />} />
+        </Route>
       </Routes>
 
       <Footer />
