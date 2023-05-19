@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
+import { reset as resetMenu } from "./menuSlice";
+import { reset as resetAte } from "./ateSlice";
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -43,11 +45,16 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-export const logoutUser = createAsyncThunk("auth/logout", async () => {
-  console.log("lout e");
-  await authService.logout();
-  console.log("lout0");
-});
+export const logoutUser = createAsyncThunk(
+  "auth/logout",
+  async (_, thunkAPI) => {
+    // console.log("lout e");
+    await authService.logout();
+    thunkAPI.dispatch(resetMenu());
+    thunkAPI.dispatch(resetAte());
+    // console.log("lout0");
+  }
+);
 
 export const authSlice = createSlice({
   name: "auth",
@@ -74,7 +81,7 @@ export const authSlice = createSlice({
         console.log("tu1", action.payload);
       })
       .addCase(addUser.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error;
       })
 
@@ -86,7 +93,7 @@ export const authSlice = createSlice({
         state.status = "success";
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error;
       })
 

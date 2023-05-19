@@ -14,7 +14,7 @@ const Login = ({ toggleUser }) => {
 
   const user = useSelector((state) => state.auth);
   useEffect(() => {
-    if (user.status === "error") {
+    if (user.status === "failed") {
       toast.error(user.error);
     }
 

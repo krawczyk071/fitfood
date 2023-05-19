@@ -6,7 +6,7 @@ const router = express.Router();
 
 export const getMenu = async (req, res) => {
   try {
-    const menu = await Menu.find();
+    const menu = await Menu.find({ userId: req.user.id });
 
     res.status(200).json(menu);
   } catch (error) {

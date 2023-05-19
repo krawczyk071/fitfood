@@ -1,0 +1,7 @@
+.info {
+  @include bgbase;
+  height: 80%;
+  &__title {
+    align-self: flex-start;
+  }
+}

@@ -14,7 +14,7 @@ const Signup = ({ toggleUser }) => {
   const [formData, setFormData] = useState(formInit);
 
   useEffect(() => {
-    if (user.status === "error") {
+    if (user.status === "failed") {
       toast.error(user.error);
     }
 

@@ -71,7 +71,7 @@ const Recipe = ({ recipe, toggleEdit }) => {
         )}
       </div>
       <div className="recipe__add">
-        <AddToMenuBtn recipeId={recipe._id} />
+        {user && <AddToMenuBtn recipeId={recipe._id} />}
       </div>
       <div className="recipe__info">
         <div className="recipe__info__item">

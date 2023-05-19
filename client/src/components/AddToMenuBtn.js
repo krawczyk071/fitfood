@@ -21,7 +21,7 @@ const AddToMenuBtn = ({ recipeId }) => {
     }
   }
 
-  const isAdded = menu.some((m) => m.recipeId === recipeId);
+  const isAdded = menu?.some((m) => m.recipeId === recipeId);
   return (
     <>
       {!isAdded ? (

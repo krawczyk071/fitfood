@@ -14,7 +14,7 @@ const Menu = () => {
       navigate("/auth");
     }
 
-    if (user?.state === "error") {
+    if (user?.state === "failed") {
       console.log(user.error);
     }
 

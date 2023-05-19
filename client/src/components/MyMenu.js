@@ -17,7 +17,11 @@ const MyMenu = () => {
   // }, [dispatch]);
 
   if (menu.data.length < 1) {
-    return <h2>MyMenu empty</h2>;
+    return (
+      <div className="info">
+        <h2>MyMenu empty</h2>
+      </div>
+    );
   }
   // const menuIds = menu.data.map((m) => m.recipeId);
   // const my = recipes.filter((r) => menuIds.includes(r._id));

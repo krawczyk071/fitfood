@@ -149,7 +149,7 @@ export const recipesSlice = createSlice({
         state.status = "success";
       })
       .addCase(delRecipe.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error;
       });
   },

@@ -22,7 +22,11 @@ const Tracker = () => {
   // }, [dispatch]);
 
   if (ate.data.length < 1) {
-    return <h2>Nothing tracked</h2>;
+    return (
+      <div className="info">
+        <h2>Nothing tracked</h2>
+      </div>
+    );
   }
 
   const menuIds = menu.data.map((m) => m.recipeId);

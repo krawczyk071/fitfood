@@ -59,7 +59,13 @@ export const delFromAte = createAsyncThunk("ate/del", async (id, thunkAPI) => {
 export const ateSlice = createSlice({
   name: "ate",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.data = null;
+      state.status = "idle";
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addToAte.pending, (state) => {
@@ -70,7 +76,7 @@ export const ateSlice = createSlice({
         state.status = "success";
       })
       .addCase(addToAte.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error;
       })
       .addCase(fetchAllAte.pending, (state) => {
@@ -81,7 +87,7 @@ export const ateSlice = createSlice({
         state.status = "success";
       })
       .addCase(fetchAllAte.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error;
       })
       .addCase(delFromAte.pending, (state) => {
@@ -93,7 +99,7 @@ export const ateSlice = createSlice({
         state.status = "success";
       })
       .addCase(delFromAte.rejected, (state, action) => {
-        state.loading = "failed";
+        state.status = "failed";
         state.error = action.error;
       });
   },
@@ -101,6 +107,6 @@ export const ateSlice = createSlice({
 
 // export const selectUser = (state) => state.ate.data;
 
-// export const { reset } = menuSlice.actions;
+export const { reset } = ateSlice.actions;
 
 export default ateSlice.reducer;

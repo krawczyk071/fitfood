@@ -6,7 +6,7 @@ const router = express.Router();
 
 export const getAte = async (req, res) => {
   try {
-    const ate = await Ate.find();
+    const ate = await Ate.find({ userId: req.user.id });
 
     res.status(200).json(ate);
   } catch (error) {

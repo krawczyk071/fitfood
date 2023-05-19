@@ -63,7 +63,13 @@ export const delFromMenu = createAsyncThunk(
 export const menuSlice = createSlice({
   name: "menu",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.data = null;
+      state.status = "idle";
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addToMenu.pending, (state) => {
@@ -107,6 +113,6 @@ export const menuSlice = createSlice({
 
 export const selectUser = (state) => state.menu.data;
 
-// export const { reset } = menuSlice.actions;
+export const { reset } = menuSlice.actions;
 
 export default menuSlice.reducer;
