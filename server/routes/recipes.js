@@ -13,6 +13,7 @@ import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.get("/", getRecipes);
+router.get("/page/:page", getRecipes);
 router.get("/search", searchRecipes);
 router.get("/tags", searchRecipesByTag);
 router.get("/tags/:tag", searchRecipesByTag);

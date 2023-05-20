@@ -4,15 +4,15 @@ import Recipe from "../models/recipes.js";
 
 const router = express.Router();
 
-export const getRecipes = async (req, res) => {
-  try {
-    const recipes = await Recipe.find();
+// export const getRecipes = async (req, res) => {
+//   try {
+//     const recipes = await Recipe.find();
 
-    res.status(200).json(recipes);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
+//     res.status(200).json(recipes);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
 
 export const getOneRecipe = async (req, res) => {
   try {
@@ -111,6 +111,33 @@ export const searchRecipesByTag = async (req, res) => {
     const [tags, recipes] = await Promise.all([tagsPromise, recipesPromise]);
 
     res.status(200).json({ tags, recipes });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// with pagination
+export const getRecipes = async (req, res) => {
+  const page = req.params.page || 1;
+  const limit = 4;
+  const skip = page * limit - limit;
+
+  try {
+    const recipesPromise = Recipe.find()
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: "desc" });
+
+    const countPromise = Recipe.count();
+
+    const [recipes, count] = await Promise.all([recipesPromise, countPromise]);
+    const pages = Math.ceil(count / limit);
+
+    // res.status(200).json({
+    //   pageinfo: { current: page, last: pages, limit, skip },
+    //   recipes,
+    // });
+    res.status(200).json(recipes);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
