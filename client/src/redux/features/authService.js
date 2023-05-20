@@ -1,6 +1,7 @@
 import axios from "axios";
+import { baseurl } from "../../utils/helpers";
 
-const API_URL = "http://localhost:5000/auth/";
+const API_URL = baseurl + "auth/";
 // const [cookies, setCookies] = useCookies(["access_token"]);
 
 // Register user

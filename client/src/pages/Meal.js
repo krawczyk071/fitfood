@@ -4,6 +4,7 @@ import Recipe from "../components/Recipe";
 import axios from "axios";
 import Loader from "../components/Loader";
 import AddRecipe from "../components/AddRecipe";
+import { baseurl } from "../utils/helpers";
 
 const Meal = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const Meal = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const API_URL = "http://localhost:5000/recipes/";
+      const API_URL = baseurl + "recipes/";
       const response = await axios.get(API_URL + id);
       setRecipe(response.data);
     };

@@ -29,9 +29,18 @@ const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(CONNECTION_URL)
-  .then(() =>
-    app.listen(PORT, () =>
-      console.log(`Server Running on Port: http://localhost:${PORT}`)
-    )
-  )
+  .then(() => app.listen(PORT, () => console.log(`Server Running`)))
   .catch((error) => console.log(`${error} did not connect`));
+
+// // Serve frontend
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+//   app.get('*', (req, res) =>
+//     res.sendFile(
+//       path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+//     )
+//   );
+// } else {
+//   app.get('/', (req, res) => res.send('Please set to production'));
+// }

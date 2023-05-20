@@ -4,7 +4,8 @@ import RecipeList from "./RecipeList";
 import { Link, useParams } from "react-router-dom";
 import Loader from "./Loader";
 import axios from "axios";
-
+import { baseurl } from "../utils/helpers";
+console.log({ baseurl });
 const Discover = () => {
   // const recipes = useSelector((state) => state.recipes);
   const { tag } = useParams();
@@ -14,7 +15,7 @@ const Discover = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const API_URL = "http://localhost:5000/recipes/tags/";
+      const API_URL = baseurl + "recipes/tags/";
       const response = await axios.get(API_URL + (tag ? tag : ""));
       // console.log({ response });
       setRecipes({ status: "idle", data: response.data.recipes });
@@ -37,7 +38,7 @@ const Discover = () => {
         <>
           <div className="discover__tags">
             {tags.slice(0, 5).map((t) => (
-              <Link to={`/meals/${t._id}`}>
+              <Link to={`/meals/${t._id}`} key={t._id}>
                 <div className="discover__tags__tag">{`${t._id}`}</div>
               </Link>
             ))}

@@ -24,3 +24,7 @@ export const groupBy = (items, key) =>
 //     [i.date]: (Number(a[i.date]) || 0) + Number(i.meal.calories),
 //   };
 // }, {});
+export const baseurl =
+  process.env.REACT_APP_STAGE === "dev"
+    ? process.env.REACT_APP_LOCAL
+    : process.env.REACT_APP_SERVER_URL;

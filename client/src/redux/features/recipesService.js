@@ -1,6 +1,7 @@
 import axios from "axios";
+import { baseurl } from "../../utils/helpers";
 
-const API_URL = "http://localhost:5000/recipes/";
+const API_URL = baseurl + "recipes/";
 
 // Register user
 const add = async (formData, token) => {
