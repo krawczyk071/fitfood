@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import recipesService from "./recipesService";
 
-const RECIPES_URL = "http://localhost:5000/recipes";
 const initialState = {
   data: [],
   status: "idle", // idle, loading, success, failed
