@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import RecipeList from "./RecipeList";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRecipes } from "../redux/features/recipesSlice";
 import { Link, useParams } from "react-router-dom";
 import Loader from "./Loader";
 import axios from "axios";

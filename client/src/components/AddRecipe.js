@@ -44,16 +44,8 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
   }
 
   function validateForm() {
-    const {
-      name,
-      photo,
-      tags,
-      time,
-      servings,
-      calories,
-      ingredients,
-      directions,
-    } = formData;
+    const { name, photo, time, servings, calories, ingredients, directions } =
+      formData;
 
     if (!(name || ingredients || directions || photo)) {
       throw new Error("Fill mandatory fields");
