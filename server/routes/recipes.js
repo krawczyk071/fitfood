@@ -5,12 +5,17 @@ import {
   editRecipe,
   getOneRecipe,
   getRecipes,
+  searchRecipes,
+  searchRecipesByTag,
 } from "../controllers/recipes.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 router.get("/", getRecipes);
+router.get("/search", searchRecipes);
+router.get("/tags", searchRecipesByTag);
+router.get("/tags/:tag", searchRecipesByTag);
 router.post("/", protect, createRecipe);
 router
   .route("/:id")

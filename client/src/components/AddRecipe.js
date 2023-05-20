@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function postProcessForm(formData) {
   return {
     ...formData,
-    tags: formData.tags.split(","),
+    tags: formData.tags.split(",").map((t) => t.trim().toLowerCase()),
     ingredients: formData.ingredients.split("\n"),
     directions: formData.directions.split("\n"),
   };

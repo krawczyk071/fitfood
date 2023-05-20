@@ -80,3 +80,38 @@ export const delRecipe = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+export const searchRecipes = async (req, res) => {
+  try {
+    const recipes = await Recipe.find(
+      { $text: { $search: req.query.q } },
+      // add score field
+      {
+        score: { $meta: "textScore" },
+      }
+    )
+      // the sort them
+      .sort({
+        score: { $meta: "textScore" },
+      });
+    // limit to only 5 results
+    // .limit(5);
+
+    res.status(200).json(recipes);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const searchRecipesByTag = async (req, res) => {
+  const tag = req.params.tag;
+  const tagQuery = tag || { $exists: true, $ne: [] };
+  try {
+    const tagsPromise = Recipe.getTagsList();
+    const recipesPromise = Recipe.find({ tags: tagQuery });
+    const [tags, recipes] = await Promise.all([tagsPromise, recipesPromise]);
+
+    res.status(200).json({ tags, recipes });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

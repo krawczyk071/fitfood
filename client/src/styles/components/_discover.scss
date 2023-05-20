@@ -9,4 +9,24 @@
     &__search {
     }
   }
+  &__tags {
+    a {
+      color: $text1;
+      text-decoration: none;
+      cursor: pointer;
+      a:hover,
+      a:visited,
+      a:active {
+        color: $text1;
+        text-decoration: none;
+      }
+    }
+    &__tag {
+      background: $bg-highlight1;
+      border-radius: $radius1;
+      padding: 0.3rem;
+      margin: 0.2rem;
+      display: inline-block;
+    }
+  }
 }

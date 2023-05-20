@@ -37,6 +37,7 @@ function App() {
         <Route exact path="/" element={<Homepage />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/meals" element={<Meals />} />
+        <Route path="/meals/:tag" element={<Meals />} />
         <Route path="/meal/:id" element={<Meal />} />
         <Route element={<AuthRequired />}>
           <Route path="/journal" element={<Journal />} />

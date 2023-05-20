@@ -8,7 +8,7 @@
 @mixin bgbase {
   background: white;
   padding: 1.5rem;
-  margin: 1rem auto 2rem auto;
+  margin: 0 auto;
   max-width: $break-lg;
   border-radius: $radius1;
   border: $border2;
@@ -16,7 +16,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  height: 100%;
 }
 
 @import "components/navbar";
@@ -67,4 +68,5 @@ p {
 }
 .container {
   flex: 1;
+  padding: 1rem 0 2rem 0;
 }

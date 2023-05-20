@@ -1,9 +1,18 @@
+import axios from "axios";
 import React, { useState } from "react";
 
-const Search = () => {
+const Search = ({ setRecipes }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    const fetch = async () => {
+      const API_URL = "http://localhost:5000/recipes/search";
+      const response = await axios.get(API_URL + `?q=${searchTerm}`);
+      // console.log({ response });
+      setRecipes({ status: "idle", data: response.data });
+    };
+    fetch();
+  }
   function handleChange(e) {
     setSearchTerm(e.target.value);
   }

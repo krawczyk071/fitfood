@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const recipeSchema = mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    trim: true,
+    required: "Please enter a recipe name!",
+  },
   tags: [String],
   photo: String,
   ingredients: [String],
@@ -18,6 +22,20 @@ const recipeSchema = mongoose.Schema({
   },
   author: String,
 });
+
+// Define our indexes
+recipeSchema.index({
+  name: "text",
+  directions: "text",
+});
+
+recipeSchema.statics.getTagsList = function () {
+  return this.aggregate([
+    { $unwind: "$tags" },
+    { $group: { _id: "$tags", count: { $sum: 1 } } },
+    { $sort: { count: -1 } },
+  ]);
+};
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
 
