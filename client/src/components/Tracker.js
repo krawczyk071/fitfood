@@ -85,7 +85,7 @@ const Tracker = () => {
     <div className="tracker">
       <h1 className="tracker__title">Meal Journal</h1>
       <h2 className="tracker__title">Recent calories</h2>
-      {!ate.data ? (
+      {ate.data.length < 1 ? (
         <h2>Nothing tracked yet</h2>
       ) : (
         <>
@@ -93,7 +93,7 @@ const Tracker = () => {
           <TrackList data={ateGroupArr} />
         </>
       )}
-      <TrackMeal data={my} />
+      {my.length > 0 && <TrackMeal data={my} />}
     </div>
   );
 };

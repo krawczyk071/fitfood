@@ -1,4 +1,8 @@
 .loader {
+  flex: 0;
+  align-self: center;
+  justify-self: center;
+
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid $secondary; /* Blue */
   border-radius: 50%;

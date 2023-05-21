@@ -298,6 +298,9 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 }
 
 .loader {
+  flex: 0;
+  align-self: center;
+  justify-self: center;
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #00684a; /* Blue */
   border-radius: 50%;
@@ -844,4 +847,8 @@ p {
 .container {
   flex: 1;
   padding: 1rem 0 2rem 0;
+  display: flex;
+}
+.container > * {
+  flex: 1;
 }/*# sourceMappingURL=style.css.map */
