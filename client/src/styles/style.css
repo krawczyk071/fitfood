@@ -744,6 +744,7 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 }
 
 .recipelist {
+  flex: 1;
   width: clamp(200px, 70%, 768px);
   display: flex;
   flex-direction: column;
@@ -782,6 +783,26 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 }
 .info__title {
   align-self: flex-start;
+}
+
+.paginator {
+  display: flex;
+}
+.paginator a,
+.paginator a:hover,
+.paginator a:active,
+.paginator a:visited {
+  color: #1e293b;
+  text-decoration: none;
+}
+.paginator__btn {
+  padding: 0.7rem 1.5rem;
+  margin: 0.5rem;
+  background: #eeeded;
+  border-radius: 0.375rem;
+}
+.paginator__btn--active {
+  background: #71e25a;
 }
 
 body {

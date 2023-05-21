@@ -1,0 +1,19 @@
+.paginator {
+  display: flex;
+  a,
+  a:hover,
+  a:active,
+  a:visited {
+    color: $text1;
+    text-decoration: none;
+  }
+  &__btn {
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+    background: $bg-highlight1;
+    border-radius: $radius1;
+    &--active {
+      background: $primary;
+    }
+  }
+}

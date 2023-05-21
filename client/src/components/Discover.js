@@ -44,6 +44,7 @@ const Discover = () => {
             ))}
           </div>
           <RecipeList recipes={recipes.data} />
+          {/* <Paginator baseUrl={"www"} current={3} last={5} /> */}
         </>
       )}
     </div>
