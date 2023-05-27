@@ -10,7 +10,7 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: minmax(100px, 20%) 1fr;
-  grid-template-rows: repeat(6fr);
+  grid-template-rows: repeat(3, auto) 1fr repeat(2, auto);
   grid-template-areas:
     "a a"
     "b c"

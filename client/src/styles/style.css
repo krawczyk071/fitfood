@@ -298,7 +298,6 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 }
 
 .loader {
-  flex: 0;
   align-self: center;
   justify-self: center;
   border: 16px solid #f3f3f3; /* Light grey */
@@ -518,7 +517,7 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   display: grid;
   gap: 1rem;
   grid-template-columns: minmax(100px, 20%) 1fr;
-  grid-template-rows: repeat(6fr);
+  grid-template-rows: repeat(3, auto) 1fr repeat(2, auto);
   grid-template-areas: "a a" "b c" "b d" "b e" "b f" "h g";
 }
 .recipe ul {
@@ -851,4 +850,10 @@ p {
 }
 .container > * {
   flex: 1;
+}
+
+.forLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=style.css.map */
