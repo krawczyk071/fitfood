@@ -4,7 +4,6 @@ const Chart = ({ cals }) => {
   const max = 5000;
   // draw target line
   cals = cals.slice().reverse();
-  console.log({ cals });
   return (
     <div className="chart">
       {cals.map((c) => {

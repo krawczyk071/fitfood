@@ -78,7 +78,7 @@ export const authSlice = createSlice({
       .addCase(addUser.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = "success";
-        console.log("tu1", action.payload);
+        // console.log("tu1", action.payload);
       })
       .addCase(addUser.rejected, (state, action) => {
         state.status = "failed";

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const TrackMeal = ({ data }) => {
   const [formStatus, setFormStatus] = useState("idle");
   const dispatch = useDispatch();
-  const formInit = { date: "Monday", recipeId: data[0]._id };
+  const formInit = { recipeId: data[0]._id };
   const [formData, setFormData] = useState(formInit);
 
   function onChange(e) {
@@ -15,7 +15,7 @@ const TrackMeal = ({ data }) => {
 
   async function onSubmit(e) {
     e.preventDefault();
-    console.log({ formData });
+    // console.log({ formData });
     try {
       setFormStatus("pending");
       await dispatch(addToAte(formData)).unwrap();
@@ -55,8 +55,9 @@ const TrackMeal = ({ data }) => {
           name="date"
           id="day"
           onChange={onChange}
+          required
         />
-        <label htmlFor="meals" className="lbl">
+        <label htmlFor="recipeId" className="lbl">
           Meal
         </label>
         <div className="select">

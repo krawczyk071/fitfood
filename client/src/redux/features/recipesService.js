@@ -30,7 +30,6 @@ const delOne = async (id, token) => {
     },
   };
   // const response = await axios.delete(API_URL + id, config);
-  console.log({ config });
   const response = await axios.patch(
     API_URL + id,
     {

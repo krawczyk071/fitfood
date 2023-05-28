@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "./Loader";
 import axios from "axios";
 import { baseurl } from "../utils/helpers";
-console.log({ baseurl });
 const Discover = () => {
   // const recipes = useSelector((state) => state.recipes);
   const { tag } = useParams();

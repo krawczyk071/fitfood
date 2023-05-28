@@ -96,7 +96,7 @@ export const ateSlice = createSlice({
         state.status = "loading";
       })
       .addCase(delFromAte.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         state.data = state.data.filter((ate) => ate._id !== action.payload.id);
         state.status = "success";
       })

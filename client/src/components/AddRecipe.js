@@ -203,7 +203,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
           }`}
           disabled={addStatus !== "idle"}
         >
-          <span class="btn__text">Save</span>
+          <span className="btn__text">Save</span>
         </button>
       </form>
     </div>

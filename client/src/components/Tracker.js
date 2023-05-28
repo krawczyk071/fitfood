@@ -15,7 +15,6 @@ const Tracker = () => {
   useEffect(() => {
     dispatch(fetchAllAte());
   }, [dispatch]);
-  console.log("reloading", ate);
   if (
     ate.status === "loading" ||
     menu.status === "loading" ||
