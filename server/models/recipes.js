@@ -21,6 +21,7 @@ const recipeSchema = mongoose.Schema({
     default: new Date(),
   },
   author: String,
+  hidden: Boolean,
 });
 
 // Define our indexes

@@ -6,7 +6,7 @@ const router = express.Router();
 
 export const getRecipes = async (req, res) => {
   try {
-    const recipes = await Recipe.find();
+    const recipes = await Recipe.find({ hidden: { $ne: true } });
 
     res.status(200).json(recipes);
   } catch (error) {
@@ -34,6 +34,7 @@ export const createRecipe = async (req, res) => {
     time,
     servings,
     calories,
+    hidden,
   } = req.body;
 
   const newRecipe = new Recipe({
@@ -45,6 +46,7 @@ export const createRecipe = async (req, res) => {
     time,
     servings,
     calories,
+    hidden,
     author: req.user.username,
   });
 
@@ -80,6 +82,22 @@ export const delRecipe = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const hidRecipe = async (req, res) => {
+  try {
+    const updatedRecipe = await Recipe.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        upsert: true,
+      }
+    );
+    res.status(200).json({ id: req.params.id });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const searchRecipes = async (req, res) => {
   try {
     const recipes = await Recipe.find(
@@ -107,7 +125,10 @@ export const searchRecipesByTag = async (req, res) => {
   const tagQuery = tag || { $exists: true, $ne: [] };
   try {
     const tagsPromise = Recipe.getTagsList();
-    const recipesPromise = Recipe.find({ tags: tagQuery });
+    const recipesPromise = Recipe.find({
+      tags: tagQuery,
+      hidden: { $ne: true },
+    });
     const [tags, recipes] = await Promise.all([tagsPromise, recipesPromise]);
 
     res.status(200).json({ tags, recipes });

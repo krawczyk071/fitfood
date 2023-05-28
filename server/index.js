@@ -19,6 +19,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Hello to FitFood API");
 });
+
 app.use("/auth", usersRoutes);
 app.use("/recipes", recipesRoutes);
 app.use("/menu", menuRoutes);

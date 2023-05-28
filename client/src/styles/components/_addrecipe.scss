@@ -3,6 +3,10 @@
   &__title {
     align-self: flex-start;
   }
+  p {
+    align-self: flex-start;
+    font-size: 0.7rem;
+  }
   &__form {
     width: clamp(200px, 70%, $break-md);
     display: flex;

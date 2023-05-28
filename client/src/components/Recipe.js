@@ -2,7 +2,7 @@ import React from "react";
 // import { recipes } from "../utils/data";
 import { useDispatch, useSelector } from "react-redux";
 import AddToMenuBtn from "./AddToMenuBtn";
-import { delRecipe } from "../redux/features/recipesSlice";
+import { editRecipe } from "../redux/features/recipesSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,10 @@ const Recipe = ({ recipe, toggleEdit }) => {
   }
   function onDelete() {
     try {
-      dispatch(delRecipe(recipe._id));
+      // dispatch(delRecipe(recipe._id));
+      dispatch(
+        editRecipe({ formData: { ...recipe, hidden: true }, id: recipe._id })
+      );
       toast.success("Recipe deleted");
       navigate(`/`);
     } catch (err) {
@@ -59,7 +62,7 @@ const Recipe = ({ recipe, toggleEdit }) => {
           <h2>Author</h2>
           <p>{recipe.author}</p>
         </div>
-        {user && user.username === recipe.author && (
+        {user && user.username === recipe.author && toggleEdit && (
           <>
             <div className="recipe__author__edit" onClick={onEdit}>
               Edit

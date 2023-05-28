@@ -140,10 +140,9 @@ export const recipesSlice = createSlice({
         state.status = "loading";
       })
       .addCase(delRecipe.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.data = state.data.filter(
-          (recipe) => recipe._id !== action.payload.id
-        );
+        // state.data = state.data.filter(
+        //   (recipe) => recipe._id !== action.payload.id
+        // );
         state.status = "success";
       })
       .addCase(delRecipe.rejected, (state, action) => {

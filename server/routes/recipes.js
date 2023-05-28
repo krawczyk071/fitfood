@@ -5,6 +5,7 @@ import {
   editRecipe,
   getOneRecipe,
   getRecipes,
+  hidRecipe,
   searchRecipes,
   searchRecipesByTag,
 } from "../controllers/recipes.js";
@@ -22,6 +23,7 @@ router
   .route("/:id")
   .get(getOneRecipe)
   .put(protect, editRecipe)
-  .delete(protect, delRecipe);
+  // .delete(protect, delRecipe)
+  .patch(protect, hidRecipe);
 
 export default router;

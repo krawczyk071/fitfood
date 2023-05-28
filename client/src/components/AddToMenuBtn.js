@@ -25,7 +25,7 @@ const AddToMenuBtn = ({ recipeId }) => {
   return (
     <>
       {!isAdded ? (
-        <button className="btn" onClick={onAdd}>
+        <button className="btn btn--primary" onClick={onAdd}>
           Save to MyMenu
         </button>
       ) : (

@@ -47,11 +47,11 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
     const { name, photo, time, servings, calories, ingredients, directions } =
       formData;
 
-    if (!(name || ingredients || directions || photo)) {
+    if (!(name && ingredients && directions && photo)) {
       throw new Error("Fill mandatory fields");
     }
     if (![time, servings, calories].every((n) => parseInt(n))) {
-      throw new Error("Only numbbers allowed for time, servings, calories");
+      throw new Error("Only numbers allowed for time, servings, calories");
     }
   }
 
@@ -71,7 +71,9 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
     try {
       setAddStatus("pending");
       if (!edit) {
-        await dispatch(addRecipe(postProcessForm(formData))).unwrap();
+        await dispatch(
+          addRecipe(postProcessForm({ ...formData, hidden: false }))
+        ).unwrap();
         toast.success("Recipe added");
         navigate(`/`);
       } else {
@@ -95,7 +97,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
       <h1 className="addrecipe__title">Add Recipe</h1>
       <form onSubmit={onSubmit} className="addrecipe__form" autoComplete="off">
         <label htmlFor="name" className="lbl">
-          name
+          name *
         </label>
         <input
           className="ipt"
@@ -107,7 +109,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
           onChange={onChange}
         />
         <label htmlFor="photo" className="lbl">
-          photo url
+          photo url *
         </label>
         <input
           value={formData?.photo}
@@ -170,7 +172,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
           </div>
         </div>
         <label htmlFor="ingredients" className="lbl">
-          ingredients
+          ingredients *
         </label>
         <textarea
           className="ipt"
@@ -182,7 +184,7 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
           onChange={onChange}
         ></textarea>
         <label htmlFor="directions" className="lbl">
-          directions
+          directions *
         </label>
         <textarea
           className="ipt"
@@ -193,8 +195,15 @@ const AddRecipe = ({ edit, id, toggleEdit }) => {
           value={formData?.directions}
           onChange={onChange}
         ></textarea>
-        <button type="submit" className="btn" disabled={addStatus !== "idle"}>
-          Submit
+        <p>* fields are mandatory</p>
+        <button
+          type="submit"
+          className={`btn  btn--primary${
+            addStatus !== "idle" ? " btn--loading" : ""
+          }`}
+          disabled={addStatus !== "idle"}
+        >
+          <span class="btn__text">Save</span>
         </button>
       </form>
     </div>
