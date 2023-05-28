@@ -10,7 +10,7 @@
     cursor: pointer;
   }
   &__form {
-    width: clamp(200px, 70%, $break-md);
+    width: clamp(350px, 70%, $break-md);
     display: flex;
     flex-direction: column;
     align-items: center;

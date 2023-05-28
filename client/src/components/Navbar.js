@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import LoginBtn from "./LoginBtn";
 
 const Navbar = () => {
+  const [burgerOpen, setBurgerOpen] = useState(false);
+  const toggleBurger = () => {
+    setBurgerOpen((prev) => !prev);
+  };
   return (
     <div className="header">
       <nav className="navbar">
@@ -11,7 +15,7 @@ const Navbar = () => {
           <Logo />
         </div>
 
-        <ul className="navbar__list">
+        <ul className={`navbar__list ${burgerOpen ? "open" : ""}`}>
           <li className="navbar__list__item">
             <Link to="/">Home</Link>
           </li>
@@ -32,6 +36,11 @@ const Navbar = () => {
             <LoginBtn />
           </li>
         </ul>
+        <button className="nobtn burger__btn" onClick={toggleBurger}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
       </nav>
     </div>
   );

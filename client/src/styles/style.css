@@ -356,10 +356,10 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   color: #f1fff9;
   font-weight: bold;
 }
-
 .navbar__list {
   flex: 1;
   height: 80px;
@@ -369,12 +369,11 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   margin: 0;
   padding: 0;
 }
-
 .navbar__list__item {
   flex: 1 0 80px;
   display: inline;
   text-align: center;
-  margin: 0.3rem;
+  padding: 0.3rem;
 }
 .navbar__list__item a,
 .navbar__list__item div {
@@ -389,9 +388,44 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   text-decoration: underline;
 }
 
+.burger__btn {
+  flex: 0;
+  position: absolute;
+  top: 2.5rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+.burger__btn .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #71e25a;
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 576px) {
   .navbar {
-    background: blue;
+    flex-direction: column;
+  }
+  .navbar__list {
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    padding-bottom: 1rem;
+  }
+  .navbar__list__item {
+    flex: 1;
+    margin: 0;
+    padding: 0.3rem;
+  }
+  .open {
+    display: flex;
+  }
+  .burger__btn {
+    display: flex;
   }
 }
 .hero {
@@ -407,13 +441,13 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 }
 .hero h1 {
   color: #1e293b;
-  font-size: 2em;
+  font-size: clamp(1em, 20vw, 2em);
   z-index: 1;
   text-decoration: none;
 }
 .hero h2 {
   color: #f1fff9;
-  font-size: 2em;
+  font-size: clamp(1em, 20vw, 2em);
   margin-top: -0.5em;
   margin-bottom: -0.6em;
   z-index: 10;
@@ -467,7 +501,7 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   font-size: 0.7rem;
 }
 .addrecipe__form {
-  width: clamp(200px, 70%, 768px);
+  width: clamp(350px, 70%, 768px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -510,7 +544,7 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   cursor: pointer;
 }
 .login__form {
-  width: clamp(200px, 70%, 768px);
+  width: clamp(350px, 70%, 768px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -623,6 +657,14 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   padding-right: 1rem;
 }
 
+@media screen and (max-width: 768px) {
+  .recipe {
+    padding: 0.8rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, auto);
+    grid-template-areas: "a" "c" "b" "d" "e" "f" "h" "g";
+  }
+}
 .search {
   width: 200px;
   display: flex;
@@ -683,7 +725,7 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
   justify-content: center;
 }
 .trackmeal__form {
-  width: clamp(200px, 70%, 768px);
+  width: clamp(350px, 70%, 768px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -780,7 +822,7 @@ li:not(#foo) > fieldset > div > span > input[type=checkbox] + label {
 
 .recipelist {
   flex: 1;
-  width: clamp(200px, 70%, 768px);
+  width: clamp(350px, 70%, 768px);
   display: flex;
   flex-direction: column;
 }
@@ -889,4 +931,13 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.nobtn {
+  border: none;
+  background: none;
+  width: -moz-fit-content;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

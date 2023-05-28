@@ -92,3 +92,20 @@
     padding-right: 1rem;
   }
 }
+@media screen and (max-width: $break-md) {
+  .recipe {
+    padding: 0.8rem;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, auto);
+    grid-template-areas:
+      "a"
+      "c"
+      "b"
+      "d"
+      "e"
+      "f"
+      "h"
+      "g";
+  }
+}

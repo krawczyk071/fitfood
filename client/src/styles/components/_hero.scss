@@ -8,13 +8,13 @@
   user-select: none;
   h1 {
     color: $text1;
-    font-size: 2em;
+    font-size: clamp(1em, 20vw, 2em);
     z-index: 1;
     text-decoration: none;
   }
   h2 {
     color: $text2;
-    font-size: 2em;
+    font-size: clamp(1em, 20vw, 2em);
 
     margin-top: -0.5em;
     margin-bottom: -0.6em;
