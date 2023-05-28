@@ -5,23 +5,28 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "./Loader";
 import axios from "axios";
 import { baseurl } from "../utils/helpers";
+import Paginator from "./Paginator";
 const Discover = () => {
   // const recipes = useSelector((state) => state.recipes);
-  const { tag } = useParams();
+  const { tag, page } = useParams();
 
   const [recipes, setRecipes] = useState({ status: "loading", data: [] });
   const [tags, setTags] = useState();
+  const [pageInfo, setPageInfo] = useState();
 
   useEffect(() => {
     const fetch = async () => {
       const API_URL = baseurl + "recipes/tags/";
-      const response = await axios.get(API_URL + (tag ? tag : ""));
+      const response = await axios.get(
+        API_URL + (tag ? tag : "all") + "/" + (page ? page : 1)
+      );
       // console.log({ response });
       setRecipes({ status: "idle", data: response.data.recipes });
       setTags(response.data.tags);
+      setPageInfo(response.data.pageinfo);
     };
     fetch();
-  }, [tag]);
+  }, [tag, page]);
 
   return (
     <div className="discover">
@@ -31,7 +36,7 @@ const Discover = () => {
           <Search setRecipes={setRecipes} />
         </div>
       </div>
-      {recipes.status === "loading" ? (
+      {recipes.status === "loading" || tags.status === "loading" ? (
         <Loader />
       ) : (
         <>
@@ -43,7 +48,11 @@ const Discover = () => {
             ))}
           </div>
           <RecipeList recipes={recipes.data} />
-          {/* <Paginator baseUrl={"www"} current={3} last={5} /> */}
+          <Paginator
+            baseUrl={`/meals/${tag || "all"}/`}
+            current={parseInt(pageInfo.current)}
+            last={parseInt(pageInfo.last)}
+          />
         </>
       )}
     </div>

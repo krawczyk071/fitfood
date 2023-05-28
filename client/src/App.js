@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchRecipes } from "./redux/features/recipesSlice";
 import { fetchAllMenu } from "./redux/features/menuSlice";
-import { fetchAllAte } from "./redux/features/ateSlice";
 import AuthRequired from "./components/AuthRequired";
 
 function App() {
@@ -38,6 +37,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/meals" element={<Meals />} />
         <Route path="/meals/:tag" element={<Meals />} />
+        <Route path="/meals/:tag/:page" element={<Meals />} />
         <Route path="/meal/:id" element={<Meal />} />
         <Route element={<AuthRequired />}>
           <Route path="/journal" element={<Journal />} />

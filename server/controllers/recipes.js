@@ -122,16 +122,34 @@ export const searchRecipes = async (req, res) => {
 
 export const searchRecipesByTag = async (req, res) => {
   const tag = req.params.tag;
-  const tagQuery = tag || { $exists: true, $ne: [] };
+  const page = req.params.page || 1;
+  const limit = 10;
+  const skip = page * limit - limit;
+
+  const tagQuery = tag && tag !== "all" ? tag : { $exists: true, $ne: [] };
   try {
     const tagsPromise = Recipe.getTagsList();
     const recipesPromise = Recipe.find({
       tags: tagQuery,
       hidden: { $ne: true },
-    });
-    const [tags, recipes] = await Promise.all([tagsPromise, recipesPromise]);
+    })
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: "desc" });
+    const countPromise = Recipe.where({ tags: tagQuery }).countDocuments();
 
-    res.status(200).json({ tags, recipes });
+    const [tags, recipes, count] = await Promise.all([
+      tagsPromise,
+      recipesPromise,
+      countPromise,
+    ]);
+    const pages = Math.ceil(count / limit);
+
+    res.status(200).json({
+      tags,
+      recipes,
+      pageinfo: { current: page, last: pages, limit, skip },
+    });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

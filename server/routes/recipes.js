@@ -17,7 +17,7 @@ router.get("/", getRecipes);
 router.get("/page/:page", getRecipes);
 router.get("/search", searchRecipes);
 router.get("/tags", searchRecipesByTag);
-router.get("/tags/:tag", searchRecipesByTag);
+router.get("/tags/:tag/:page", searchRecipesByTag);
 router.post("/", protect, createRecipe);
 router
   .route("/:id")
