@@ -1,10 +1,10 @@
 import express from "express";
-import { addToAte, delFromAte, getAte } from "../controllers/ate.js";
+import { addToAte, delFromAte, getAteAgg } from "../controllers/ate.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/", protect, getAte);
+router.get("/", protect, getAteAgg);
 router.post("/", protect, addToAte);
 router.route("/:id").delete(protect, delFromAte);
 

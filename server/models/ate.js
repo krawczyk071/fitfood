@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const ateSchema = mongoose.Schema({
   userId: String,
   recipeId: String,
-  date: String,
+  date: Date,
 });
 
 const Ate = mongoose.model("Ate", ateSchema);

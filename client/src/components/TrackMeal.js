@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { days } from "../utils/data";
 import { useDispatch } from "react-redux";
 import { addToAte } from "../redux/features/ateSlice";
 import { toast } from "react-toastify";
 
 const TrackMeal = ({ data }) => {
-  console.log({ data });
-  const [, setFormStatus] = useState("idle");
+  const [formStatus, setFormStatus] = useState("idle");
   const dispatch = useDispatch();
   const formInit = { date: "Monday", recipeId: data[0]._id };
   const [formData, setFormData] = useState(formInit);
@@ -21,7 +19,6 @@ const TrackMeal = ({ data }) => {
     try {
       setFormStatus("pending");
       await dispatch(addToAte(formData)).unwrap();
-
       setFormData(formInit);
       toast.success("Tracked");
     } catch (err) {
@@ -35,10 +32,10 @@ const TrackMeal = ({ data }) => {
     <div className="trackmeal">
       <h2 className="tracker__title">Track your meals</h2>
       <form onSubmit={onSubmit} className="trackmeal__form">
-        <label htmlFor="login" className="lbl">
+        <label htmlFor="day" className="lbl">
           Day
         </label>
-        <div className="select">
+        {/* <div className="select">
           <select
             name="date"
             id="date"
@@ -51,7 +48,14 @@ const TrackMeal = ({ data }) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
+        <input
+          className="ipt"
+          type="date"
+          name="date"
+          id="day"
+          onChange={onChange}
+        />
         <label htmlFor="meals" className="lbl">
           Meal
         </label>
@@ -69,7 +73,13 @@ const TrackMeal = ({ data }) => {
             ))}
           </select>
         </div>
-        <button type="submit" className="btn btn--primary">
+        <button
+          type="submit"
+          className={`btn  btn--primary${
+            formStatus !== "idle" ? " btn--loading" : ""
+          }`}
+          disabled={formStatus !== "idle"}
+        >
           Track
         </button>
       </form>

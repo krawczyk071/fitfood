@@ -12,7 +12,9 @@ export const addToAte = createAsyncThunk(
   async (ateData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.data.token;
-      return await ateService.add(ateData, token);
+      const response = await ateService.add(ateData, token);
+      await thunkAPI.dispatch(fetchAllAte());
+      return response;
     } catch (error) {
       const message =
         (error.response &&
@@ -72,7 +74,7 @@ export const ateSlice = createSlice({
         state.status = "loading";
       })
       .addCase(addToAte.fulfilled, (state, action) => {
-        state.data.push(action.payload);
+        // state.data.push(action.payload);
         state.status = "success";
       })
       .addCase(addToAte.rejected, (state, action) => {

@@ -41,3 +41,58 @@ export const delFromAte = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const getAteAgg = async (req, res) => {
+  try {
+    const ate = await Ate.aggregate([
+      {
+        $match: {
+          userId: req.user.id,
+        },
+      },
+      {
+        $addFields: {
+          obj_recipeId: {
+            $toObjectId: "$recipeId",
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "recipes",
+          localField: "obj_recipeId",
+          foreignField: "_id",
+          as: "recipeData",
+        },
+      },
+      {
+        $unwind: {
+          path: "$recipeData",
+        },
+      },
+      {
+        $group: {
+          _id: "$date",
+          dailyCalories: {
+            $sum: "$recipeData.calories",
+          },
+          mealsArr: {
+            $push: { recipe: "$recipeData", mealId: "$_id" },
+          },
+        },
+      },
+      {
+        $sort: {
+          _id: -1,
+        },
+      },
+      {
+        $limit: 5,
+      },
+    ]);
+
+    res.status(200).json(ate);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

@@ -26,7 +26,7 @@ function App() {
     dispatch(fetchRecipes());
     if (user) {
       dispatch(fetchAllMenu());
-      dispatch(fetchAllAte());
+      // dispatch(fetchAllAte());
     }
   }, [dispatch, user]);
 
